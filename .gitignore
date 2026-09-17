@@ -35,3 +35,7 @@ Thumbs.db
 # Experiment outputs
 research/experiments/runs/*
 !research/experiments/runs/.gitkeep
+
+
+# Python packaging metadata
+*.egg-info/

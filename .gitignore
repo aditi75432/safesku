@@ -41,3 +41,10 @@ research/experiments/runs/*
 *.egg-info/
 # Generated historical benchmark data
 data/benchmark/saferproducts/
+
+
+# Add these lines to the existing repository .gitignore (do not replace the whole file):
+data/amazon/raw/
+data/amazon/normalized/
+data/benchmark/amazon_linkage/*.jsonl
+data/benchmark/amazon_linkage/modeling/

@@ -1,0 +1,406 @@
+{
+  "recall_count": 1005,
+  "incident_count": 13696,
+  "cpsc_identity_field_coverage": {
+    "product_name": 1005,
+    "product_description": 0,
+    "recall_upc": 87
+  },
+  "saferproducts_identity_field_coverage": {
+    "product_brand": 13487,
+    "product_model": 11918,
+    "product_description": 13696,
+    "product_category": 0,
+    "product_upc": 3911,
+    "manufacturer_name": 13692,
+    "retailer_name": 10750
+  },
+  "exact_upc_link": {
+    "recalls_with_exact_upc_incident_match": 9,
+    "sample_links": [
+      {
+        "cpsc_source_record_id": "8747",
+        "saferproducts_source_record_ids": [
+          "20210502-EEF49-2147364386"
+        ]
+      },
+      {
+        "cpsc_source_record_id": "8935",
+        "saferproducts_source_record_ids": [
+          "20220110-2BD01-3558892"
+        ]
+      },
+      {
+        "cpsc_source_record_id": "8976",
+        "saferproducts_source_record_ids": [
+          "20201228-D1BCA-2147367123",
+          "20201229-0792C-2147367110",
+          "20201229-521AE-2147367101",
+          "20210205-03A4F-2147366028"
+        ]
+      },
+      {
+        "cpsc_source_record_id": "9044",
+        "saferproducts_source_record_ids": [
+          "20201016-17E2A-2147369186"
+        ]
+      },
+      {
+        "cpsc_source_record_id": "9069",
+        "saferproducts_source_record_ids": [
+          "20211020-4F185-2147359116"
+        ]
+      },
+      {
+        "cpsc_source_record_id": "9117",
+        "saferproducts_source_record_ids": [
+          "20210813-AEC26-2147361131",
+          "20211012-EA7F8-2147359205"
+        ]
+      },
+      {
+        "cpsc_source_record_id": "9346",
+        "saferproducts_source_record_ids": [
+          "20211025-25E64-2147359061"
+        ]
+      },
+      {
+        "cpsc_source_record_id": "9403",
+        "saferproducts_source_record_ids": [
+          "20211207-C5C77-2147358516"
+        ]
+      },
+      {
+        "cpsc_source_record_id": "9443",
+        "saferproducts_source_record_ids": [
+          "20220522-785C7-2147356057"
+        ]
+      }
+    ]
+  },
+  "token_candidate_analysis": {
+    "recalls_with_at_least_one_token_candidate": 1005,
+    "candidate_count_min": 368,
+    "candidate_count_max": 6496,
+    "candidate_count_median": 2051,
+    "candidate_count_distribution_top_15": {
+      "5284": 5,
+      "1220": 5,
+      "2088": 4,
+      "1293": 4,
+      "2019": 4,
+      "1357": 4,
+      "5200": 4,
+      "1262": 3,
+      "2111": 3,
+      "1319": 3,
+      "1709": 3,
+      "2136": 3,
+      "2034": 3,
+      "2096": 3,
+      "1451": 3
+    },
+    "top_candidates_sample": [
+      {
+        "cpsc_source_record_id": "8723",
+        "cpsc_recall_number": "20050",
+        "cpsc_title": "Boston Warehouse Trading Corp. Recalls Holiday Travel Mugs Due to Fire Hazard; Sold Exclusively at Meijer Stores",
+        "saferproducts_source_record_id": "20230707-8F73E-2147346553",
+        "token_jaccard": 0.1429,
+        "shared_identity_tokens": 3,
+        "incident_product_brand": "Millie moon",
+        "incident_product_model": "11909"
+      },
+      {
+        "cpsc_source_record_id": "8723",
+        "cpsc_recall_number": "20050",
+        "cpsc_title": "Boston Warehouse Trading Corp. Recalls Holiday Travel Mugs Due to Fire Hazard; Sold Exclusively at Meijer Stores",
+        "saferproducts_source_record_id": "20221208-D4E42-2147352154",
+        "token_jaccard": 0.1364,
+        "shared_identity_tokens": 3,
+        "incident_product_brand": "Holiday Time",
+        "incident_product_model": null
+      },
+      {
+        "cpsc_source_record_id": "8723",
+        "cpsc_recall_number": "20050",
+        "cpsc_title": "Boston Warehouse Trading Corp. Recalls Holiday Travel Mugs Due to Fire Hazard; Sold Exclusively at Meijer Stores",
+        "saferproducts_source_record_id": "20220219-BA8B4-2147357510",
+        "token_jaccard": 0.1,
+        "shared_identity_tokens": 3,
+        "incident_product_brand": "Protege (a trademark of Walmart)",
+        "incident_product_model": "PG6013587440LS"
+      },
+      {
+        "cpsc_source_record_id": "8724",
+        "cpsc_recall_number": "20051",
+        "cpsc_title": "Libbey Glass Recalls Milk Bottles Due to Laceration Hazard",
+        "saferproducts_source_record_id": "20230209-CA865-2147350825",
+        "token_jaccard": 0.1429,
+        "shared_identity_tokens": 2,
+        "incident_product_brand": "JoyJolt",
+        "incident_product_model": "Declan"
+      },
+      {
+        "cpsc_source_record_id": "8724",
+        "cpsc_recall_number": "20051",
+        "cpsc_title": "Libbey Glass Recalls Milk Bottles Due to Laceration Hazard",
+        "saferproducts_source_record_id": "20210607-0A001-2147363673",
+        "token_jaccard": 0.1429,
+        "shared_identity_tokens": 2,
+        "incident_product_brand": "Pillowfort/Target",
+        "incident_product_model": null
+      },
+      {
+        "cpsc_source_record_id": "8724",
+        "cpsc_recall_number": "20051",
+        "cpsc_title": "Libbey Glass Recalls Milk Bottles Due to Laceration Hazard",
+        "saferproducts_source_record_id": "20221003-74B16-3925792",
+        "token_jaccard": 0.1333,
+        "shared_identity_tokens": 2,
+        "incident_product_brand": "Libbey",
+        "incident_product_model": "Gibraltar Tumbler Glasses, 16-ounce"
+      },
+      {
+        "cpsc_source_record_id": "8725",
+        "cpsc_recall_number": "20712",
+        "cpsc_title": "Thesaurus Global Marketing Recalls Tricycles Due to Violation of the Federal Lead Paint Ban; Risk of Poisoning; Sold Exclusively at Amazon.com (Recall Alert)",
+        "saferproducts_source_record_id": "20210420-8DD5C-2147364612",
+        "token_jaccard": 0.1429,
+        "shared_identity_tokens": 5,
+        "incident_product_brand": "Greenworks",
+        "incident_product_model": "25022"
+      },
+      {
+        "cpsc_source_record_id": "8725",
+        "cpsc_recall_number": "20712",
+        "cpsc_title": "Thesaurus Global Marketing Recalls Tricycles Due to Violation of the Federal Lead Paint Ban; Risk of Poisoning; Sold Exclusively at Amazon.com (Recall Alert)",
+        "saferproducts_source_record_id": "20230203-7C00A-4089926",
+        "token_jaccard": 0.129,
+        "shared_identity_tokens": 4,
+        "incident_product_brand": "2 in 1, Funtastic Tower & Step Stool",
+        "incident_product_model": "795-W"
+      },
+      {
+        "cpsc_source_record_id": "8725",
+        "cpsc_recall_number": "20712",
+        "cpsc_title": "Thesaurus Global Marketing Recalls Tricycles Due to Violation of the Federal Lead Paint Ban; Risk of Poisoning; Sold Exclusively at Amazon.com (Recall Alert)",
+        "saferproducts_source_record_id": "20210621-1D681-2147363370",
+        "token_jaccard": 0.129,
+        "shared_identity_tokens": 4,
+        "incident_product_brand": "Champion Sports (Amazon)",
+        "incident_product_model": "Champion Sports Official Lacrosse Balls"
+      },
+      {
+        "cpsc_source_record_id": "8726",
+        "cpsc_recall_number": "20056",
+        "cpsc_title": "The Thompson's Company Recalls Aerosol Waterproofing Wood and Masonry Protectors Due to Fire Hazard",
+        "saferproducts_source_record_id": "20210310-4D1AD-3106453",
+        "token_jaccard": 0.15,
+        "shared_identity_tokens": 3,
+        "incident_product_brand": "Monogram",
+        "incident_product_model": "ZBD0710K10SS"
+      },
+      {
+        "cpsc_source_record_id": "8726",
+        "cpsc_recall_number": "20056",
+        "cpsc_title": "The Thompson's Company Recalls Aerosol Waterproofing Wood and Masonry Protectors Due to Fire Hazard",
+        "saferproducts_source_record_id": "20210510-4A1E9-2147364229",
+        "token_jaccard": 0.1304,
+        "shared_identity_tokens": 3,
+        "incident_product_brand": "Kidde",
+        "incident_product_model": "Impossible to tell they melted in the fire"
+      },
+      {
+        "cpsc_source_record_id": "8726",
+        "cpsc_recall_number": "20056",
+        "cpsc_title": "The Thompson's Company Recalls Aerosol Waterproofing Wood and Masonry Protectors Due to Fire Hazard",
+        "saferproducts_source_record_id": "20201127-53B10-2147367851",
+        "token_jaccard": 0.125,
+        "shared_identity_tokens": 3,
+        "incident_product_brand": "Finn and Emma",
+        "incident_product_model": "N/A"
+      },
+      {
+        "cpsc_source_record_id": "8727",
+        "cpsc_recall_number": "20052",
+        "cpsc_title": "Baby Trend Recalls Tango Mini Strollers Due to Fall Hazard",
+        "saferproducts_source_record_id": "20220712-004CF-2147355051",
+        "token_jaccard": 0.25,
+        "shared_identity_tokens": 5,
+        "incident_product_brand": "Valco",
+        "incident_product_model": null
+      },
+      {
+        "cpsc_source_record_id": "8727",
+        "cpsc_recall_number": "20052",
+        "cpsc_title": "Baby Trend Recalls Tango Mini Strollers Due to Fall Hazard",
+        "saferproducts_source_record_id": "20230211-F5EE1-2147350767",
+        "token_jaccard": 0.2,
+        "shared_identity_tokens": 2,
+        "incident_product_brand": "Otteroo",
+        "incident_product_model": null
+      },
+      {
+        "cpsc_source_record_id": "8727",
+        "cpsc_recall_number": "20052",
+        "cpsc_title": "Baby Trend Recalls Tango Mini Strollers Due to Fall Hazard",
+        "saferproducts_source_record_id": "20220912-A2C1A-2147353889",
+        "token_jaccard": 0.1667,
+        "shared_identity_tokens": 3,
+        "incident_product_brand": "Dream on me",
+        "incident_product_model": "Dream On Me Jett Mini Portable Folding Crib #685"
+      },
+      {
+        "cpsc_source_record_id": "8728",
+        "cpsc_recall_number": "20054",
+        "cpsc_title": "Varidesk Recalls Stand2Learn Stools Due to Fall Hazard",
+        "saferproducts_source_record_id": "20220712-004CF-2147355051",
+        "token_jaccard": 0.0952,
+        "shared_identity_tokens": 2,
+        "incident_product_brand": "Valco",
+        "incident_product_model": null
+      },
+      {
+        "cpsc_source_record_id": "8728",
+        "cpsc_recall_number": "20054",
+        "cpsc_title": "Varidesk Recalls Stand2Learn Stools Due to Fall Hazard",
+        "saferproducts_source_record_id": "20241020-800CC-2147335847",
+        "token_jaccard": 0.0833,
+        "shared_identity_tokens": 1,
+        "incident_product_brand": "Firman",
+        "incident_product_model": "TO7573"
+      },
+      {
+        "cpsc_source_record_id": "8728",
+        "cpsc_recall_number": "20054",
+        "cpsc_title": "Varidesk Recalls Stand2Learn Stools Due to Fall Hazard",
+        "saferproducts_source_record_id": "20220320-14C8D-2147357185",
+        "token_jaccard": 0.0833,
+        "shared_identity_tokens": 1,
+        "incident_product_brand": "SPLATRBALL",
+        "incident_product_model": null
+      },
+      {
+        "cpsc_source_record_id": "8729",
+        "cpsc_recall_number": "20057",
+        "cpsc_title": "STIHL Recalls Pressure Washers Due to Injury Hazard",
+        "saferproducts_source_record_id": "20231004-35E06-2147344858",
+        "token_jaccard": 0.0909,
+        "shared_identity_tokens": 2,
+        "incident_product_brand": "Future Motion",
+        "incident_product_model": "Onewheel XR"
+      },
+      {
+        "cpsc_source_record_id": "8729",
+        "cpsc_recall_number": "20057",
+        "cpsc_title": "STIHL Recalls Pressure Washers Due to Injury Hazard",
+        "saferproducts_source_record_id": "20230817-70044-2147345762",
+        "token_jaccard": 0.0909,
+        "shared_identity_tokens": 1,
+        "incident_product_brand": "Breville",
+        "incident_product_model": "BPR700 BSSUSC"
+      },
+      {
+        "cpsc_source_record_id": "8729",
+        "cpsc_recall_number": "20057",
+        "cpsc_title": "STIHL Recalls Pressure Washers Due to Injury Hazard",
+        "saferproducts_source_record_id": "20200602-FD7E7-2147371946",
+        "token_jaccard": 0.0909,
+        "shared_identity_tokens": 1,
+        "incident_product_brand": "Stihl",
+        "incident_product_model": "MS391"
+      },
+      {
+        "cpsc_source_record_id": "8730",
+        "cpsc_recall_number": "20058",
+        "cpsc_title": "PCNA Recalls Power Banks Due to Fire and Burn Hazards",
+        "saferproducts_source_record_id": "20220824-F1260-2147354222",
+        "token_jaccard": 0.1429,
+        "shared_identity_tokens": 4,
+        "incident_product_brand": "Armstrong",
+        "incident_product_model": "10,000 mAh Power Bank"
+      },
+      {
+        "cpsc_source_record_id": "8730",
+        "cpsc_recall_number": "20058",
+        "cpsc_title": "PCNA Recalls Power Banks Due to Fire and Burn Hazards",
+        "saferproducts_source_record_id": "20241020-800CC-2147335847",
+        "token_jaccard": 0.1176,
+        "shared_identity_tokens": 2,
+        "incident_product_brand": "Firman",
+        "incident_product_model": "TO7573"
+      },
+      {
+        "cpsc_source_record_id": "8730",
+        "cpsc_recall_number": "20058",
+        "cpsc_title": "PCNA Recalls Power Banks Due to Fire and Burn Hazards",
+        "saferproducts_source_record_id": "20221105-D3056-2147352923",
+        "token_jaccard": 0.1111,
+        "shared_identity_tokens": 2,
+        "incident_product_brand": "HONEYWELL [REDACTED]",
+        "incident_product_model": "BG 10"
+      },
+      {
+        "cpsc_source_record_id": "8731",
+        "cpsc_recall_number": "20059",
+        "cpsc_title": "Summer Infant Recalls SwaddleMe By Your Bed Inclined Sleepers to Prevent Risk of Suffocation",
+        "saferproducts_source_record_id": "20200602-0F918-2147371957",
+        "token_jaccard": 0.25,
+        "shared_identity_tokens": 4,
+        "incident_product_brand": "SwaddleMe",
+        "incident_product_model": "91394"
+      },
+      {
+        "cpsc_source_record_id": "8731",
+        "cpsc_recall_number": "20059",
+        "cpsc_title": "Summer Infant Recalls SwaddleMe By Your Bed Inclined Sleepers to Prevent Risk of Suffocation",
+        "saferproducts_source_record_id": "20200309-C2443-2147374442",
+        "token_jaccard": 0.2286,
+        "shared_identity_tokens": 8,
+        "incident_product_brand": "SwaddleMe by Your Bed Sleeper",
+        "incident_product_model": "91394"
+      },
+      {
+        "cpsc_source_record_id": "8731",
+        "cpsc_recall_number": "20059",
+        "cpsc_title": "Summer Infant Recalls SwaddleMe By Your Bed Inclined Sleepers to Prevent Risk of Suffocation",
+        "saferproducts_source_record_id": "20211112-20225-3490797",
+        "token_jaccard": 0.1538,
+        "shared_identity_tokens": 4,
+        "incident_product_brand": "Summer Infant",
+        "incident_product_model": "27980"
+      },
+      {
+        "cpsc_source_record_id": "8732",
+        "cpsc_recall_number": "20060",
+        "cpsc_title": "Evenflo Recalls Pillo Portable Napper Inclined Sleepers to Prevent Risk of Suffocation",
+        "saferproducts_source_record_id": "20200624-5122E-2147371509",
+        "token_jaccard": 0.1111,
+        "shared_identity_tokens": 2,
+        "incident_product_brand": "Evenflo",
+        "incident_product_model": "I don't know."
+      },
+      {
+        "cpsc_source_record_id": "8732",
+        "cpsc_recall_number": "20060",
+        "cpsc_title": "Evenflo Recalls Pillo Portable Napper Inclined Sleepers to Prevent Risk of Suffocation",
+        "saferproducts_source_record_id": "20240602-A3033-2147338863",
+        "token_jaccard": 0.0952,
+        "shared_identity_tokens": 2,
+        "incident_product_brand": "Medline",
+        "incident_product_model": "MD5680BA"
+      },
+      {
+        "cpsc_source_record_id": "8732",
+        "cpsc_recall_number": "20060",
+        "cpsc_title": "Evenflo Recalls Pillo Portable Napper Inclined Sleepers to Prevent Risk of Suffocation",
+        "saferproducts_source_record_id": "20230810-23F8F-2147345895",
+        "token_jaccard": 0.0909,
+        "shared_identity_tokens": 2,
+        "incident_product_brand": "Colgate-Palmolive",
+        "incident_product_model": "Fabuloso"
+      }
+    ]
+  }
+}

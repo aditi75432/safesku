@@ -1,0 +1,106 @@
+{
+  "pair_count": 13,
+  "linked_recall_count": 9,
+  "pair_status_counts": {
+    "incident_on_or_after_recall": 5,
+    "pre_incident_published_after_recall": 4,
+    "pre_recall_public": 4
+  },
+  "recall_counts_by_status": {
+    "incident_on_or_after_recall": 5,
+    "pre_incident_published_after_recall": 2,
+    "pre_recall_public": 4
+  },
+  "pre_recall_public_pairs": [
+    {
+      "cpsc_product_name": "Welmate Lidocaine Numbing Cream",
+      "cpsc_product_upcs": [
+        "373581000012",
+        "373581105045"
+      ],
+      "cpsc_recall_date": "2021-04-22",
+      "cpsc_recall_number": "21737",
+      "cpsc_source_record_id": "9044",
+      "cpsc_title": "YYBA Recalls Welmate Lidocaine Numbing Cream Due to Failure to Meet Child Resistant Packaging Requirement; Risk of Poisoning (Recall Alert)",
+      "incident_date": "2020-10-07",
+      "incident_description": "I bought welmate 5% lidocaine cream, it does not have a child proof lid.",
+      "manufacturer_name": "Wellsprings Medical",
+      "product_brand": "Lidocaine Numbing Cream",
+      "product_description": "4oz lidocaine cream",
+      "product_model": "4oz",
+      "product_upc": "373581000012",
+      "publication_date": "2020-11-20",
+      "retailer_name": "amazon.com",
+      "saferproducts_source_record_id": "20201016-17E2A-2147369186"
+    },
+    {
+      "cpsc_product_name": "Lidocaine 4% Topical Anesthetic Cream",
+      "cpsc_product_upcs": [
+        "860002324906"
+      ],
+      "cpsc_recall_date": "2022-06-30",
+      "cpsc_recall_number": "22754",
+      "cpsc_source_record_id": "9346",
+      "cpsc_title": "Mohnark Pharmaceuticals Recalls Lidocaine Topical Anesthetic Cream Due to Failure to Meet Child-Resistant Packaging Requirement; Risk of Poisoning (Recall Alert)",
+      "incident_date": "2021-10-18",
+      "incident_description": "Monhark 4% Lidocaine Cream does not have the required child safety cap.  The cap is just a regular flip that is very easy to open.  I bought it on Amazon.  Here is the link:\r\n\r\nhttps://www.amazon.com/Lidocaine-4-Topical-Anesthetic-Cream/dp/B08FTL2RMH",
+      "manufacturer_name": "Mohnark Pharmaceuticals Inc.",
+      "product_brand": "Mohnark",
+      "product_description": "4% Lidocaine Cream in a tube with a flip top cap.  Expiration date:  9/2023",
+      "product_model": null,
+      "product_upc": "860002324906",
+      "publication_date": "2021-11-10",
+      "retailer_name": "Amazon.com",
+      "saferproducts_source_record_id": "20211025-25E64-2147359061"
+    },
+    {
+      "cpsc_product_name": "Toddleroo Rotating Cabinet Latches",
+      "cpsc_product_upcs": [
+        "026107061775",
+        "026107061782"
+      ],
+      "cpsc_recall_date": "2022-09-29",
+      "cpsc_recall_number": "22232",
+      "cpsc_source_record_id": "9403",
+      "cpsc_title": "North States Industries Recalls Toddleroo Rotating Cabinet Latches Due to Choking Hazard",
+      "incident_date": "2021-12-03",
+      "incident_description": "A piece fell off of the cabinet latches I purchased, the piece is small enough to choke on.",
+      "manufacturer_name": "North States Industries, Inc.",
+      "product_brand": "Toddleroo by North states",
+      "product_description": "Toddleroo by Northstates 4 pack rotating cabinet latches, model number 6178,  white, 3 3/4 inches long with 2 white circular tabs measuring 3/4 inches each.",
+      "product_model": "6178",
+      "product_upc": "026107061782",
+      "publication_date": "2021-12-23",
+      "retailer_name": "Walmart",
+      "saferproducts_source_record_id": "20211207-C5C77-2147358516"
+    },
+    {
+      "cpsc_product_name": "BLACK+DECKER Model HGS011 Easy Garment Steamers",
+      "cpsc_product_upcs": [
+        "050875828384",
+        "050875828391",
+        "050875828407"
+      ],
+      "cpsc_recall_date": "2022-11-03",
+      "cpsc_recall_number": "23034",
+      "cpsc_source_record_id": "9443",
+      "cpsc_title": "Empower Brands Recalls Black+Decker® Garment Steamers Due to Burn Hazard",
+      "incident_date": "2022-05-22",
+      "incident_description": "I purchased a Black & Decker HGS011F Clothing Steamer. I followed all safety precautions, and only filled the water tank to half of the \"Max Fill\" line. As soon as the water heated up, instead of just steam, boiling water came spewing out of the steamer head, nearly burning my hand. I have a video demonstrating this happening. I have reported it to B & D customer support but feel this requires a report to the CSPC as well.\r\n\r\nWhen I tried uploading a video and photos to this report, the CSPC web site returned an error. I have the video available.",
+      "manufacturer_name": "Spectrum Brands, Inc.",
+      "product_brand": "Black & Decker",
+      "product_description": "Black and Decker HGS011F Easy Garment Steamer",
+      "product_model": "HGS011F",
+      "product_upc": "050875828407",
+      "publication_date": "2022-06-08",
+      "retailer_name": "WAL-MART",
+      "saferproducts_source_record_id": "20220522-785C7-2147356057"
+    }
+  ],
+  "pre_recall_public_recall_ids": [
+    "9044",
+    "9346",
+    "9403",
+    "9443"
+  ]
+}

@@ -21,7 +21,7 @@ def _recall_datetime(record: RecallRecord) -> datetime | None:
 
 
 def mentions_from_recall(record: RecallRecord) -> list[ProductMention]:
-    """Project CPSC product entries into source-specific product mentions."""
+    """Project each CPSC product entry into a source-specific mention."""
 
     observed_at = _recall_datetime(record)
     mentions: list[ProductMention] = []
@@ -79,11 +79,18 @@ def mentions_from_recall(record: RecallRecord) -> list[ProductMention]:
 
 def evidence_from_recall(
     record: RecallRecord,
-    mention: ProductMention,
+    mention: ProductMention | None = None,
 ) -> list[EvidenceRecord]:
-    """Create traceable evidence records for one CPSC product mention."""
+    """Create traceable source evidence for one CPSC recall.
+
+    Product-level attribution is only attached when the caller has a single,
+    unambiguous product mention for the recall. When a recall has multiple
+    products, the evidence remains recall-level rather than being duplicated
+    or incorrectly attributed to every product.
+    """
 
     observed_at = _recall_datetime(record)
+    product_mention_id = mention.mention_id if mention else None
     evidence: list[EvidenceRecord] = []
 
     recall_text = "\n\n".join(
@@ -99,13 +106,12 @@ def evidence_from_recall(
                     "ev",
                     DataSource.CPSC,
                     record.source_record_id,
-                    mention.mention_id,
                     EvidenceType.RECALL,
                 ),
                 source=DataSource.CPSC,
                 source_record_id=record.source_record_id,
                 evidence_type=EvidenceType.RECALL,
-                product_mention_id=mention.mention_id,
+                product_mention_id=product_mention_id,
                 text=recall_text,
                 observed_at=observed_at,
                 published_at=record.last_publish_date,
@@ -123,14 +129,13 @@ def evidence_from_recall(
                     "ev",
                     DataSource.CPSC,
                     record.source_record_id,
-                    mention.mention_id,
                     EvidenceType.HAZARD_STATEMENT,
                     str(index),
                 ),
                 source=DataSource.CPSC,
                 source_record_id=record.source_record_id,
                 evidence_type=EvidenceType.HAZARD_STATEMENT,
-                product_mention_id=mention.mention_id,
+                product_mention_id=product_mention_id,
                 text=hazard.name,
                 observed_at=observed_at,
                 published_at=record.last_publish_date,
@@ -152,14 +157,13 @@ def evidence_from_recall(
                     "ev",
                     DataSource.CPSC,
                     record.source_record_id,
-                    mention.mention_id,
                     EvidenceType.INJURY_STATEMENT,
                     str(index),
                 ),
                 source=DataSource.CPSC,
                 source_record_id=record.source_record_id,
                 evidence_type=EvidenceType.INJURY_STATEMENT,
-                product_mention_id=mention.mention_id,
+                product_mention_id=product_mention_id,
                 text=injury,
                 observed_at=observed_at,
                 published_at=record.last_publish_date,
@@ -177,14 +181,13 @@ def evidence_from_recall(
                     "ev",
                     DataSource.CPSC,
                     record.source_record_id,
-                    mention.mention_id,
                     EvidenceType.REMEDY_STATEMENT,
                     str(index),
                 ),
                 source=DataSource.CPSC,
                 source_record_id=record.source_record_id,
                 evidence_type=EvidenceType.REMEDY_STATEMENT,
-                product_mention_id=mention.mention_id,
+                product_mention_id=product_mention_id,
                 text=remedy.name,
                 observed_at=observed_at,
                 published_at=record.last_publish_date,

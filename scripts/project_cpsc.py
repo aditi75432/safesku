@@ -32,9 +32,11 @@ def parse_args() -> argparse.Namespace:
 
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
+
     with path.open("rb") as file:
         for chunk in iter(lambda: file.read(1024 * 1024), b""):
             digest.update(chunk)
+
     return digest.hexdigest()
 
 
@@ -50,13 +52,12 @@ def main() -> None:
     with input_path.open("r", encoding="utf-8") as file:
         for line_number, line in enumerate(file, start=1):
             line = line.strip()
+
             if not line:
                 continue
 
             try:
-                records.append(
-                    RecallRecord.model_validate(json.loads(line))
-                )
+                records.append(RecallRecord.model_validate(json.loads(line)))
             except Exception as exc:
                 raise ValueError(
                     f"Invalid normalized record at line {line_number}: {exc}"
@@ -64,15 +65,24 @@ def main() -> None:
 
     all_mentions = []
     all_evidence = []
+    recalls_without_product_mentions = 0
 
     for record in records:
         mentions = mentions_from_recall(record)
         all_mentions.extend(mentions)
 
-        for mention in mentions:
-            all_evidence.extend(
-                evidence_from_recall(record, mention)
+        if not mentions:
+            recalls_without_product_mentions += 1
+
+        # Create recall-level evidence exactly once. Only attach a product
+        # mention when there is exactly one unambiguous product in the recall.
+        evidence_mention = mentions[0] if len(mentions) == 1 else None
+        all_evidence.extend(
+            evidence_from_recall(
+                record,
+                evidence_mention,
             )
+        )
 
     mentions_path = output_dir / "product_mentions.jsonl"
     evidence_path = output_dir / "evidence.jsonl"
@@ -105,7 +115,7 @@ def main() -> None:
     ]
 
     manifest = {
-        "pipeline": "cpsc_projection_v1",
+        "pipeline": "cpsc_projection_v2",
         "source": "cpsc",
         "input": args.input.replace("\\", "/"),
         "input_sha256": sha256_file(input_path),
@@ -113,6 +123,7 @@ def main() -> None:
         "recall_records": len(records),
         "product_mentions": len(all_mentions),
         "evidence_records": len(all_evidence),
+        "recalls_without_product_mentions": recalls_without_product_mentions,
         "recall_date_min": min(recall_dates) if recall_dates else None,
         "recall_date_max": max(recall_dates) if recall_dates else None,
     }
@@ -122,11 +133,15 @@ def main() -> None:
         encoding="utf-8",
     )
 
-    print("SafeSKU CPSC projection")
-    print("-----------------------")
+    print("SafeSKU CPSC projection v2")
+    print("--------------------------")
     print(f"Recall records: {len(records)}")
     print(f"Product mentions: {len(all_mentions)}")
     print(f"Evidence records: {len(all_evidence)}")
+    print(
+        "Recalls without product mentions: "
+        f"{recalls_without_product_mentions}"
+    )
     print(f"Input SHA-256: {manifest['input_sha256']}")
     print(f"Mentions: {mentions_path.relative_to(PROJECT_ROOT)}")
     print(f"Evidence: {evidence_path.relative_to(PROJECT_ROOT)}")

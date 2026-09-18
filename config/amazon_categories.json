@@ -1,0 +1,48 @@
+{
+  "source_name": "Amazon Reviews'23",
+  "source_url": "https://amazon-reviews-2023.github.io/main.html",
+  "base_url": "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_2023/raw/meta_categories",
+  "categories": [
+    {
+      "name": "Appliances",
+      "estimated_meta_size_mb": 95.3
+    },
+    {
+      "name": "Automotive",
+      "estimated_meta_size_mb": 1700.0
+    },
+    {
+      "name": "Baby_Products",
+      "estimated_meta_size_mb": 218.6
+    },
+    {
+      "name": "Electronics",
+      "estimated_meta_size_mb": 1700.0
+    },
+    {
+      "name": "Home_and_Kitchen",
+      "estimated_meta_size_mb": 3800.0
+    },
+    {
+      "name": "Health_and_Household",
+      "estimated_meta_size_mb": 787.2
+    },
+    {
+      "name": "Sports_and_Outdoors",
+      "estimated_meta_size_mb": 1300.0
+    },
+    {
+      "name": "Tools_and_Home_Improvement",
+      "estimated_meta_size_mb": 1500.0
+    },
+    {
+      "name": "Toys_and_Games",
+      "estimated_meta_size_mb": 848.3
+    }
+  ],
+  "default_categories": [
+    "Appliances",
+    "Baby_Products"
+  ],
+  "note": "Metadata is downloaded on demand. Raw files are intentionally excluded from Git."
+}

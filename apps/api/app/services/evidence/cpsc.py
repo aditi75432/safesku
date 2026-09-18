@@ -12,7 +12,12 @@ from app.services.ids import stable_id
 def _recall_datetime(record: RecallRecord) -> datetime | None:
     if record.recall_date is None:
         return None
-    return datetime.combine(record.recall_date, time.min, tzinfo=timezone.utc)
+
+    return datetime.combine(
+        record.recall_date,
+        time.min,
+        tzinfo=timezone.utc,
+    )
 
 
 def mentions_from_recall(record: RecallRecord) -> list[ProductMention]:
@@ -30,16 +35,21 @@ def mentions_from_recall(record: RecallRecord) -> list[ProductMention]:
             product.name or "",
             product.model or "",
         )
+
         identifiers = [
             ProductIdentifier(
                 kind="cpsc_recall_id",
                 value=record.source_record_id,
             )
         ]
-        identifiers.extend(
-            ProductIdentifier(kind="upc", value=upc)
-            for upc in record.product_upcs
-        )
+
+        for upc in record.product_upcs:
+            identifiers.append(
+                ProductIdentifier(
+                    kind="upc",
+                    value=upc,
+                )
+            )
 
         mentions.append(
             ProductMention(
@@ -71,13 +81,18 @@ def evidence_from_recall(
     record: RecallRecord,
     mention: ProductMention,
 ) -> list[EvidenceRecord]:
-    """Create traceable evidence records for a CPSC product mention."""
+    """Create traceable evidence records for one CPSC product mention."""
 
     observed_at = _recall_datetime(record)
     evidence: list[EvidenceRecord] = []
 
-    text_parts = [part for part in (record.title, record.description) if part]
-    if text_parts:
+    recall_text = "\n\n".join(
+        part
+        for part in (record.title, record.description)
+        if part
+    )
+
+    if recall_text:
         evidence.append(
             EvidenceRecord(
                 evidence_id=stable_id(
@@ -91,7 +106,7 @@ def evidence_from_recall(
                 source_record_id=record.source_record_id,
                 evidence_type=EvidenceType.RECALL,
                 product_mention_id=mention.mention_id,
-                text="\n\n".join(text_parts),
+                text=recall_text,
                 observed_at=observed_at,
                 published_at=record.last_publish_date,
                 source_url=record.url,
@@ -101,6 +116,7 @@ def evidence_from_recall(
     for index, hazard in enumerate(record.hazards):
         if not hazard.name:
             continue
+
         evidence.append(
             EvidenceRecord(
                 evidence_id=stable_id(
@@ -123,6 +139,56 @@ def evidence_from_recall(
                     "hazard_type": hazard.hazard_type or "",
                     "hazard_type_id": hazard.hazard_type_id or "",
                 },
+            )
+        )
+
+    for index, injury in enumerate(record.injuries):
+        if not injury:
+            continue
+
+        evidence.append(
+            EvidenceRecord(
+                evidence_id=stable_id(
+                    "ev",
+                    DataSource.CPSC,
+                    record.source_record_id,
+                    mention.mention_id,
+                    EvidenceType.INJURY_STATEMENT,
+                    str(index),
+                ),
+                source=DataSource.CPSC,
+                source_record_id=record.source_record_id,
+                evidence_type=EvidenceType.INJURY_STATEMENT,
+                product_mention_id=mention.mention_id,
+                text=injury,
+                observed_at=observed_at,
+                published_at=record.last_publish_date,
+                source_url=record.url,
+            )
+        )
+
+    for index, remedy in enumerate(record.remedies):
+        if not remedy.name:
+            continue
+
+        evidence.append(
+            EvidenceRecord(
+                evidence_id=stable_id(
+                    "ev",
+                    DataSource.CPSC,
+                    record.source_record_id,
+                    mention.mention_id,
+                    EvidenceType.REMEDY_STATEMENT,
+                    str(index),
+                ),
+                source=DataSource.CPSC,
+                source_record_id=record.source_record_id,
+                evidence_type=EvidenceType.REMEDY_STATEMENT,
+                product_mention_id=mention.mention_id,
+                text=remedy.name,
+                observed_at=observed_at,
+                published_at=record.last_publish_date,
+                source_url=record.url,
             )
         )
 

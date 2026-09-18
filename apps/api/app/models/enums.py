@@ -13,6 +13,8 @@ class EvidenceType(StrEnum):
     CONSUMER_REVIEW = "consumer_review"
     PRODUCT_METADATA = "product_metadata"
     HAZARD_STATEMENT = "hazard_statement"
+    INJURY_STATEMENT = "injury_statement"
+    REMEDY_STATEMENT = "remedy_statement"
 
 
 class MatchMethod(StrEnum):

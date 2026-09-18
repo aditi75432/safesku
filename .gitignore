@@ -48,3 +48,10 @@ data/amazon/raw/
 data/amazon/normalized/
 data/benchmark/amazon_linkage/*.jsonl
 data/benchmark/amazon_linkage/modeling/
+
+
+data/amazon/raw/
+data/amazon/normalized/
+data/benchmark/amazon_linkage/*.jsonl
+data/benchmark/amazon_linkage/*.pkl
+data/benchmark/amazon_linkage/modeling/

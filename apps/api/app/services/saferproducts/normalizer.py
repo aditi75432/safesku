@@ -1,13 +1,16 @@
 from __future__ import annotations
 
 import re
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from typing import Any, Iterable
 
 from app.models.safety_incident import SafetyIncident
 
 
-_ODATA_DATE_RE = re.compile(r"^/Date\((?P<ms>-?\d+)(?P<offset>[+-]\d{4})?\)/$")
+_ODATA_DATE_RE = re.compile(
+    r"^/Date\((?P<ms>-?\d+)(?P<offset>[+-]\d{4})?\)/$"
+)
+_EPOCH = datetime(1970, 1, 1, tzinfo=timezone.utc)
 
 
 def _first(record: dict[str, Any], names: Iterable[str]) -> Any:
@@ -27,8 +30,6 @@ def _scalar(value: Any) -> Any:
         return value
 
     if isinstance(value, dict):
-        # OData v3 navigation properties can be represented as:
-        # {"__deferred": {"uri": "..."}}
         return None
 
     return None
@@ -38,8 +39,27 @@ def _text(value: Any) -> str | None:
     value = _scalar(value)
     if value is None:
         return None
+
     text = str(value).strip()
     return text or None
+
+
+def _parse_odata_millisecond_date(text: str) -> date | None:
+    match = _ODATA_DATE_RE.match(text)
+    if not match:
+        return None
+
+    milliseconds = int(match.group("ms"))
+
+    try:
+        # timedelta arithmetic is portable across Windows and Linux, unlike
+        # datetime.fromtimestamp(), whose supported epoch range is platform
+        # dependent.
+        parsed = _EPOCH + timedelta(milliseconds=milliseconds)
+    except (OverflowError, ValueError):
+        return None
+
+    return parsed.date()
 
 
 def _parse_date(value: Any) -> date | None:
@@ -56,13 +76,8 @@ def _parse_date(value: Any) -> date | None:
 
     text = str(value).strip()
 
-    match = _ODATA_DATE_RE.match(text)
-    if match:
-        milliseconds = int(match.group("ms"))
-        return datetime.fromtimestamp(
-            milliseconds / 1000,
-            tz=timezone.utc,
-        ).date()
+    if text.startswith("/Date("):
+        return _parse_odata_millisecond_date(text)
 
     for candidate in (text[:10], text):
         try:
@@ -125,10 +140,7 @@ def normalize_incident(record: dict[str, Any]) -> SafetyIncident:
         product_description=_text(
             _first(
                 record,
-                (
-                    "IncidentProductDescription",
-                    "ProductDescription",
-                ),
+                ("IncidentProductDescription", "ProductDescription"),
             )
         ),
         product_category=_text(_first(record, ("ProductCategory",))),
@@ -163,10 +175,7 @@ def normalize_incident(record: dict[str, Any]) -> SafetyIncident:
         manufacturer_comments=_text(
             _first(
                 record,
-                (
-                    "CompanyComments",
-                    "ManufacturerComments",
-                ),
+                ("CompanyComments", "ManufacturerComments"),
             )
         ),
         retailer_name=_text(

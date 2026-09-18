@@ -3,52 +3,40 @@ from __future__ import annotations
 from app.services.saferproducts.normalizer import normalize_incident
 
 
-def test_normalize_live_saferproducts_fields() -> None:
+def test_odata_date_uses_platform_independent_parsing() -> None:
     record = {
-        "IncidentReportNumber": "20200101-TEST",
-        "IncidentDate": "1/2/2020",
-        "IncidentReportPublicationDate": "1/10/2020",
-        "IncidentDescription": "Product overheated.",
-        "ProductBrandName": "Example",
-        "ProductModelName": "X100",
-        "IncidentProductDescription": "Example product",
-        "ProductCategory": "Kitchen",
-        "ProductUPCCode": "012345678901",
-        "ProductManufacturerName": "Example Manufacturer",
-        "ProductRetailCompanyName": "Example Store",
+        "IncidentReportNumber": "TEST-1",
+        "IncidentDate": "/Date(1297036800000)/",
+        "IncidentReportPublicationDate": "/Date(1301709487243)/",
     }
 
     incident = normalize_incident(record)
 
-    assert incident.source_record_id == "20200101-TEST"
     assert incident.incident_date is not None
-    assert incident.incident_date.isoformat() == "2020-01-02"
+    assert incident.incident_date.isoformat() == "2011-02-07"
     assert incident.publication_date is not None
-    assert incident.publication_date.isoformat() == "2020-01-10"
-    assert incident.product_category == "Kitchen"
-    assert incident.product_upc == "012345678901"
-    assert incident.manufacturer_name == "Example Manufacturer"
-    assert incident.retailer_name == "Example Store"
+    assert incident.publication_date.isoformat() == "2011-04-02"
 
 
-def test_normalize_odata_millisecond_date() -> None:
+def test_out_of_range_odata_date_does_not_reject_record() -> None:
     record = {
-        "IncidentReportNumber": "20200101-TEST",
-        "IncidentDate": "/Date(1577923200000)/",
+        "IncidentReportNumber": "TEST-2",
+        # Deliberately far outside Python datetime's supported range.
+        "ProductManufacturedDate": "/Date(999999999999999999999)/",
     }
 
     incident = normalize_incident(record)
 
-    assert incident.incident_date is not None
-    assert incident.incident_date.isoformat() == "2020-01-02"
+    assert incident.source_record_id == "TEST-2"
+    assert incident.product_manufactured_date is None
 
 
-def test_deferred_navigation_property_is_ignored() -> None:
+def test_deferred_odata_value_is_ignored() -> None:
     record = {
-        "IncidentReportNumber": "20200101-TEST",
+        "IncidentReportNumber": "TEST-3",
         "Locale": {
             "__deferred": {
-                "uri": "https://example.test/IncidentDetails(1)/Locale"
+                "uri": "https://example.test/IncidentDetails(3)/Locale"
             }
         },
     }

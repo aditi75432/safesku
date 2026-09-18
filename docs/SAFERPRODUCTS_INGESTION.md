@@ -1,53 +1,26 @@
-# Historical SaferProducts ingestion
+# Resumable SaferProducts ingestion
 
-SafeSKU acquires public SaferProducts.gov incidents in bounded calendar-month windows.
+The live SaferProducts.gov service has been observed to cap a `$top=100`
+request at 50 records.
 
-## Pagination
+SafeSKU therefore:
 
-The service is OData. The ingestion code does not depend on an `__next` continuation URL. It uses deterministic `$top` + `$skip` pagination and stops when the returned page is smaller than the requested page size.
+1. Advances `$skip` by the number of records actually returned.
+2. Writes every raw page immediately.
+3. Reuses complete monthly raw windows on `--resume`.
+4. Continues incomplete monthly windows from the number of records already
+   stored.
+5. Writes one normalized JSONL file per completed month.
+6. Writes `manifest.partial.json` after every completed month.
+7. Writes the final `manifest.json` only after the complete requested period
+   finishes.
 
-The query is ordered by:
-
-```text
-IncidentDate asc,IncidentReportNumber asc
-```
-
-## Raw-data preservation
-
-Every API page is preserved as an immutable JSON snapshot under:
-
-```text
-data/benchmark/saferproducts/raw/YYYY-MM-DD/page_XXXXX.json
-```
-
-The processed canonical records are stored in:
-
-```text
-data/benchmark/saferproducts/incidents.jsonl
-```
-
-and summarized in:
-
-```text
-data/benchmark/saferproducts/manifest.json
-```
-
-## Historical leakage rule
-
-For pre-recall analysis, SafeSKU will count an incident as public evidence only when:
-
-```text
-incident_date < recall_date
-AND
-publication_date < recall_date
-```
-
-This distinguishes the date the safety event occurred from the date the incident became publicly available.
-
-## Example
+## Resume command
 
 ```powershell
-python scripts\ingest_saferproducts.py --start-date 2020-01-01 --end-date 2020-02-01 --page-size 100
+python scripts\ingest_saferproducts.py --start-date 2020-01-01 --end-date 2023-09-30 --page-size 100 --resume
 ```
 
-Only after the small-window run is validated should the full 2020-01-01 through 2023-09-30 benchmark be ingested.
+A KeyboardInterrupt leaves downloaded raw pages intact. Re-running with
+`--resume` reconstructs completed windows locally and continues incomplete
+windows without starting the whole acquisition again.

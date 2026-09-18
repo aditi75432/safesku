@@ -52,18 +52,16 @@ class SaferProductsClient:
 
         if filter_expression:
             params["$filter"] = filter_expression
-
         if order_by:
             params["$orderby"] = order_by
-
         if inline_count:
             params["$inlinecount"] = "allpages"
 
         with httpx.Client(
             timeout=self.timeout_seconds,
             follow_redirects=True,
-        ) as client:
-            response = client.get(
+        ) as http_client:
+            response = http_client.get(
                 f"{self.base_url}/IncidentDetails",
                 params=params,
                 auth=self.auth,
@@ -94,13 +92,10 @@ class SaferProductsClient:
 
         if records is None:
             records = payload.get("value")
-
         if records is None:
             records = []
-
         if isinstance(records, dict):
             records = [records]
-
         if not isinstance(records, list):
             raise ValueError(
                 "Unexpected SaferProducts records structure: "

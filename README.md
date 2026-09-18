@@ -1,16 +1,7 @@
-# SafeSKU CPSC benchmark patch
+# SafeSKU linkage human-review patch
 
-Adds the first reproducible historical CPSC benchmark builder without modifying the existing live/demo ingestion output.
+Adds a deterministic stratified human-review benchmark builder for the existing
+`data/benchmark/linkage/feature_review.jsonl` artifact.
 
-Files:
-- `scripts/build_cpsc_benchmark.py`
-- `apps/api/tests/test_cpsc_benchmark.py`
-- `docs/BENCHMARK_PROTOCOL.md`
-
-Example:
-
-```powershell
-python scripts\build_cpsc_benchmark.py --start-date 2020-01-01 --end-date 2023-09-30 --chunk-months 3
-```
-
-This writes raw date-window snapshots to `data/raw/cpsc_benchmark/` and normalized benchmark data to `data/benchmark/cpsc/`.
+The script deliberately keeps entity-resolution labels separate from temporal
+eligibility and never creates automatic negative labels.

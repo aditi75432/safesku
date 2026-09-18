@@ -1,0 +1,24 @@
+{
+  "recall_count": 1005,
+  "product_record_count": 1005,
+  "recall_fields": {
+    "description": 1005,
+    "hazards": 1005,
+    "injuries": 1003,
+    "remedies": 1005,
+    "retailers": 1004,
+    "manufacturers": 373,
+    "product_upcs": 87
+  },
+  "product_fields": {
+    "name": 1005,
+    "description": 0,
+    "model": 0,
+    "type": 0,
+    "category_id": 0,
+    "number_of_units": 1004
+  },
+  "product_types_non_null": {},
+  "product_models_present": 0,
+  "product_models_missing": 1005
+}

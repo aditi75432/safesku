@@ -1,0 +1,29 @@
+{
+  "source_candidate_rows": 3191,
+  "feature_rows": 3191,
+  "positive_seed_rows": 13,
+  "unlabeled_rows": 3178,
+  "shared_token_count_distribution": {
+    "1": 2,
+    "2": 2087,
+    "3": 745,
+    "4": 221,
+    "5": 75,
+    "6": 37,
+    "7": 10,
+    "8": 7,
+    "9": 6,
+    "10": 1
+  },
+  "product_token_jaccard": {
+    "min": 0.005731,
+    "median": 0.153846,
+    "max": 1.0
+  },
+  "product_name_sequence_similarity": {
+    "min": 0.0,
+    "median": 0.309524,
+    "max": 0.911392
+  },
+  "label_policy": "Exact UPC candidates are marked positive_seed. All non-UPC candidates remain unlabeled and require human review. No automatic negative labels are created."
+}

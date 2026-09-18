@@ -39,3 +39,5 @@ research/experiments/runs/*
 
 # Python packaging metadata
 *.egg-info/
+# Generated historical benchmark data
+data/benchmark/saferproducts/

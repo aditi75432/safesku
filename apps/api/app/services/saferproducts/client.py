@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Mapping
+from typing import Any
 
 import httpx
 
@@ -10,7 +10,8 @@ import httpx
 class SaferProductsPage:
     records: list[dict[str, Any]]
     next_url: str | None
-    total_count: int | None = None
+    total_count: int | None
+    raw_payload: dict[str, Any]
 
 
 class SaferProductsClient:
@@ -32,12 +33,17 @@ class SaferProductsClient:
     def fetch_page(
         self,
         *,
-        top: int = 1,
+        top: int = 100,
         skip: int = 0,
         filter_expression: str | None = None,
         order_by: str | None = None,
         inline_count: bool = False,
     ) -> SaferProductsPage:
+        if top <= 0:
+            raise ValueError("top must be positive.")
+        if skip < 0:
+            raise ValueError("skip cannot be negative.")
+
         params: dict[str, str | int] = {
             "$format": "json",
             "$top": top,
@@ -116,4 +122,5 @@ class SaferProductsClient:
             records=normalized_records,
             next_url=next_url if isinstance(next_url, str) else None,
             total_count=total_count,
+            raw_payload=payload,
         )

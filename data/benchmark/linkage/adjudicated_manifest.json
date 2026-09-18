@@ -1,0 +1,30 @@
+{
+  "input_rows": 150,
+  "label_distribution": {
+    "MATCH": 73,
+    "NON_MATCH": 67,
+    "UNCERTAIN": 10
+  },
+  "confidence_distribution": {
+    "HIGH": 81,
+    "MEDIUM": 59,
+    "LOW": 10
+  },
+  "uncertain_review_ids": [
+    "ER-0056",
+    "ER-0073",
+    "ER-0077",
+    "ER-0083",
+    "ER-0092",
+    "ER-0095",
+    "ER-0100",
+    "ER-0115",
+    "ER-0140",
+    "ER-0145"
+  ],
+  "exact_upc_rows": 13,
+  "unique_recalls": 115,
+  "identity_policy": "MATCH means same underlying product entity/SKU; NON_MATCH means different entity; UNCERTAIN means evidence is insufficient or conflicting.",
+  "temporal_policy": "Identity and temporal eligibility remain separate.",
+  "research_integrity": "These are senior working adjudications, not independently obtained human gold labels. They may be used for development/bootstrapping; formal evaluation should disclose the annotation process."
+}

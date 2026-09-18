@@ -1,0 +1,10 @@
+metric,value
+rows,150
+MATCH,73
+NON_MATCH,67
+UNCERTAIN,10
+HIGH_confidence,81
+MEDIUM_confidence,59
+LOW_confidence,10
+unique_recalls,115
+exact_upc_rows,13

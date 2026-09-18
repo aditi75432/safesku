@@ -1,7 +1,30 @@
 {
   "input_feature_rows": 3191,
+  "candidate_rows": 3191,
   "selected_rows": 150,
   "positive_upc_seed_rows": 13,
+  "unique_recalls": 115,
+  "max_rows_per_recall": 4,
+  "temporal_distribution": {
+    "incident_on_or_after_recall": 58,
+    "pre_incident_published_after_recall": 32,
+    "pre_recall_public": 60
+  },
+  "similarity_distribution": {
+    "low": 32,
+    "medium": 84,
+    "high": 34
+  },
+  "initial_label_distribution": {
+    "positive_seed": 13,
+    "unlabeled": 137
+  },
+  "sampling": {
+    "seed": 20260918,
+    "requested_sample_size": 150,
+    "per_recall_cap": 2,
+    "selection": "All exact-UPC seeds retained; remaining rows stratified across pre-recall-public, high/medium/low lexical similarity, and two-token candidate strata, then filled deterministically."
+  },
   "human_label_policy": {
     "allowed_labels": [
       "MATCH",
@@ -12,31 +35,6 @@
     "NON_MATCH": "Different products/entities despite candidate overlap.",
     "UNCERTAIN": "Evidence is insufficient or contradictory for a confident decision."
   },
-  "sampling": {
-    "seed": 20260918,
-    "requested_sample_size": 150,
-    "per_recall_cap": 2,
-    "selection": "All exact-UPC seeds retained; remaining rows stratified across pre-recall-public, high/medium/low lexical similarity, and two-token candidate strata, then filled deterministically from the non-UPC pool."
-  },
-  "initial_label_counts": {
-    "positive_seed": 13,
-    "unlabeled": 137
-  },
-  "temporal_status_counts": {
-    "incident_on_or_after_recall": 62,
-    "pre_incident_published_after_recall": 36,
-    "pre_recall_public": 52
-  },
-  "similarity_band_counts": {
-    "low": 21,
-    "medium": 73,
-    "high": 56
-  },
-  "unique_recalls": 115,
-  "max_rows_per_recall": 4,
-  "outputs": {
-    "jsonl": "data\\benchmark\\linkage\\human_review_set.jsonl",
-    "csv": "data\\benchmark\\linkage\\human_review_set.csv",
-    "manifest": "data\\benchmark\\linkage\\human_review_set_manifest.json"
-  }
+  "temporal_policy": "Identity and temporal eligibility are separate; pre_recall_public means incident_date < recall_date and publication_date < recall_date.",
+  "evidence_policy": "Review rows are enriched from the canonical CPSC recall, candidate-review, and SaferProducts incident artifacts so labeling is based on source evidence rather than linkage features alone."
 }

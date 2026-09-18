@@ -7,6 +7,7 @@ from app.services.saferproducts.normalizer import normalize_incident
 def test_parse_odata_v3_page() -> None:
     payload = {
         "d": {
+            "__count": "123",
             "results": [
                 {
                     "IncidentReportNumber": "20200101-TEST",
@@ -22,6 +23,7 @@ def test_parse_odata_v3_page() -> None:
     assert len(page.records) == 1
     assert page.records[0]["IncidentReportNumber"] == "20200101-TEST"
     assert page.next_url == "https://example.test/next"
+    assert page.total_count == 123
 
 
 def test_normalize_incident() -> None:

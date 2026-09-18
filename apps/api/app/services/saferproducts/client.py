@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Mapping
 
 import httpx
 
@@ -10,6 +10,7 @@ import httpx
 class SaferProductsPage:
     records: list[dict[str, Any]]
     next_url: str | None
+    total_count: int | None = None
 
 
 class SaferProductsClient:
@@ -34,6 +35,8 @@ class SaferProductsClient:
         top: int = 1,
         skip: int = 0,
         filter_expression: str | None = None,
+        order_by: str | None = None,
+        inline_count: bool = False,
     ) -> SaferProductsPage:
         params: dict[str, str | int] = {
             "$format": "json",
@@ -43,6 +46,12 @@ class SaferProductsClient:
 
         if filter_expression:
             params["$filter"] = filter_expression
+
+        if order_by:
+            params["$orderby"] = order_by
+
+        if inline_count:
+            params["$inlinecount"] = "allpages"
 
         with httpx.Client(
             timeout=self.timeout_seconds,
@@ -71,9 +80,11 @@ class SaferProductsClient:
         if isinstance(data, dict):
             records = data.get("results")
             next_url = data.get("__next") or data.get("odata.nextLink")
+            raw_count = data.get("__count") or data.get("odata.count")
         else:
             records = data
             next_url = None
+            raw_count = None
 
         if records is None:
             records = payload.get("value")
@@ -94,7 +105,15 @@ class SaferProductsClient:
             record for record in records if isinstance(record, dict)
         ]
 
+        total_count: int | None = None
+        if raw_count not in (None, ""):
+            try:
+                total_count = int(raw_count)
+            except (TypeError, ValueError):
+                total_count = None
+
         return SaferProductsPage(
             records=normalized_records,
             next_url=next_url if isinstance(next_url, str) else None,
+            total_count=total_count,
         )

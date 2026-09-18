@@ -1,0 +1,20 @@
+{
+  "cpsc_recall_count": 1005,
+  "saferproducts_incident_count": 13696,
+  "blocking_union": [
+    "exact_upc",
+    "shared_2plus_product_tokens"
+  ],
+  "review_non_upc_top_k_per_recall": 5,
+  "recalls_with_at_least_one_candidate": 771,
+  "candidate_count_min": 0,
+  "candidate_count_median": 5,
+  "candidate_count_p90": 44,
+  "candidate_count_max": 1509,
+  "exact_upc_candidates": 13,
+  "retained_exact_upc_pairs": 13,
+  "review_rows": 3191,
+  "candidate_review_file": "data\\benchmark\\linkage\\candidate_review.jsonl",
+  "blocking_policy": "Exact UPC candidates are always retained. Additional review candidates are selected by transparent ranking from the >=2 product-name-token blocker.",
+  "note": "candidate_review.jsonl is a review artifact, not the complete candidate set. The complete candidate set is generated in memory by generate_candidates()."
+}

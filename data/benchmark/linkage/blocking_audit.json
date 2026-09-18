@@ -1,0 +1,902 @@
+{
+  "cpsc_recall_count": 1005,
+  "saferproducts_incident_count": 13696,
+  "incident_identity_index_sizes": {
+    "upc_keys": 2326,
+    "brand_keys": 5719,
+    "brand_model_keys": 10378,
+    "token_keys": 32241
+  },
+  "strategy_stats": {
+    "upc": {
+      "min": 0,
+      "median": 0,
+      "mean": 0.01,
+      "p90": 0,
+      "max": 4,
+      "recalls_with_candidates": 9
+    },
+    "cpsc_brand_to_incident_brand": {
+      "min": 0,
+      "median": 0,
+      "mean": 0.0,
+      "p90": 0,
+      "max": 0,
+      "recalls_with_candidates": 0
+    },
+    "brand_model": {
+      "min": 0,
+      "median": 0,
+      "mean": 0.0,
+      "p90": 0,
+      "max": 0,
+      "recalls_with_candidates": 0
+    },
+    "any_identity_token": {
+      "min": 31,
+      "median": 711,
+      "mean": 1074.43,
+      "p90": 2508,
+      "max": 5258,
+      "recalls_with_candidates": 1005
+    },
+    "rarest_cpsc_token": {
+      "min": 0,
+      "median": 0,
+      "mean": 0.34,
+      "p90": 1,
+      "max": 10,
+      "recalls_with_candidates": 174
+    },
+    "rarest_two_cpsc_tokens": {
+      "min": 0,
+      "median": 0,
+      "mean": 0.02,
+      "p90": 0,
+      "max": 4,
+      "recalls_with_candidates": 13
+    }
+  },
+  "samples": [
+    {
+      "cpsc_source_record_id": "8723",
+      "recall_number": "20050",
+      "title": "Boston Warehouse Trading Corp. Recalls Holiday Travel Mugs Due to Fire Hazard; Sold Exclusively at Meijer Stores",
+      "product_name": "Holiday Travel Mugs",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 604,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "norwood",
+        "mass",
+        "mugs",
+        "boston",
+        "exclusively"
+      ],
+      "rare_token_frequencies": {
+        "norwood": 0,
+        "mass": 1,
+        "mugs": 2,
+        "boston": 3,
+        "exclusively": 8
+      }
+    },
+    {
+      "cpsc_source_record_id": "8724",
+      "recall_number": "20051",
+      "title": "Libbey Glass Recalls Milk Bottles Due to Laceration Hazard",
+      "product_name": "33.5 oz. Milk Bottles",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 572,
+        "rarest_cpsc_token": 1,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "laceration",
+        "toledo",
+        "libbey",
+        "ohio",
+        "milk"
+      ],
+      "rare_token_frequencies": {
+        "laceration": 1,
+        "toledo": 2,
+        "libbey": 5,
+        "ohio": 18,
+        "milk": 31
+      }
+    },
+    {
+      "cpsc_source_record_id": "8725",
+      "recall_number": "20712",
+      "title": "Thesaurus Global Marketing Recalls Tricycles Due to Violation of the Federal Lead Paint Ban; Risk of Poisoning; Sold Exclusively at Amazon.com (Recall Alert)",
+      "product_name": "Little Bambino 4 in 1 canopy children's tricycles",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 3594,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "bambino",
+        "ban",
+        "thesaurus",
+        "tricycles",
+        "doral"
+      ],
+      "rare_token_frequencies": {
+        "bambino": 0,
+        "ban": 0,
+        "thesaurus": 0,
+        "tricycles": 0,
+        "doral": 1
+      }
+    },
+    {
+      "cpsc_source_record_id": "8726",
+      "recall_number": "20056",
+      "title": "The Thompson's Company Recalls Aerosol Waterproofing Wood and Masonry Protectors Due to Fire Hazard",
+      "product_name": "Thompson's® WaterSeal® Waterproofing Wood Protector and Masonry Protector in Aerosol Cans",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 401,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "masonry",
+        "thompson",
+        "waterproofing",
+        "waterseal",
+        "protectors"
+      ],
+      "rare_token_frequencies": {
+        "masonry": 0,
+        "thompson": 0,
+        "waterproofing": 0,
+        "waterseal": 0,
+        "protectors": 2
+      }
+    },
+    {
+      "cpsc_source_record_id": "8727",
+      "recall_number": "20052",
+      "title": "Baby Trend Recalls Tango Mini Strollers Due to Fall Hazard",
+      "product_name": "Tango Mini Strollers",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 620,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "fontana",
+        "tango",
+        "calif",
+        "strollers",
+        "trend"
+      ],
+      "rare_token_frequencies": {
+        "fontana": 0,
+        "tango": 0,
+        "calif": 2,
+        "strollers": 3,
+        "trend": 16
+      }
+    },
+    {
+      "cpsc_source_record_id": "8728",
+      "recall_number": "20054",
+      "title": "Varidesk Recalls Stand2Learn Stools Due to Fall Hazard",
+      "product_name": "Stand2Learn Stools",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 56,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "coppell",
+        "stand2learn",
+        "varidesk",
+        "stools",
+        "texas"
+      ],
+      "rare_token_frequencies": {
+        "coppell": 0,
+        "stand2learn": 0,
+        "varidesk": 0,
+        "stools": 7,
+        "texas": 19
+      }
+    },
+    {
+      "cpsc_source_record_id": "8729",
+      "recall_number": "20057",
+      "title": "STIHL Recalls Pressure Washers Due to Injury Hazard",
+      "product_name": "STIHL RE 90 Pressure Washers",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 188,
+        "rarest_cpsc_token": 1,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "washers",
+        "virginia",
+        "stihl",
+        "beach",
+        "pressure"
+      ],
+      "rare_token_frequencies": {
+        "washers": 1,
+        "virginia": 2,
+        "stihl": 8,
+        "beach": 86,
+        "pressure": 93
+      }
+    },
+    {
+      "cpsc_source_record_id": "8730",
+      "recall_number": "20058",
+      "title": "PCNA Recalls Power Banks Due to Fire and Burn Hazards",
+      "product_name": "Spare 10,000 mAh Power Banks",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 856,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "kensington",
+        "leedsworld",
+        "pcna",
+        "banks",
+        "spare"
+      ],
+      "rare_token_frequencies": {
+        "kensington": 0,
+        "leedsworld": 0,
+        "pcna": 0,
+        "banks": 1,
+        "spare": 4
+      }
+    },
+    {
+      "cpsc_source_record_id": "8731",
+      "recall_number": "20059",
+      "title": "Summer Infant Recalls SwaddleMe By Your Bed Inclined Sleepers to Prevent Risk of Suffocation",
+      "product_name": "SwaddleMe By Your Bed Sleeper inclined sleeper",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 1194,
+        "rarest_cpsc_token": 1,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "inclined",
+        "woonsocket",
+        "sleepers",
+        "swaddleme",
+        "suffocation"
+      ],
+      "rare_token_frequencies": {
+        "inclined": 1,
+        "woonsocket": 1,
+        "sleepers": 2,
+        "swaddleme": 3,
+        "suffocation": 5
+      }
+    },
+    {
+      "cpsc_source_record_id": "8732",
+      "recall_number": "20060",
+      "title": "Evenflo Recalls Pillo Portable Napper Inclined Sleepers to Prevent Risk of Suffocation",
+      "product_name": "Pillo Portable Napper",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 308,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "pillo",
+        "piqua",
+        "inclined",
+        "napper",
+        "sleepers"
+      ],
+      "rare_token_frequencies": {
+        "pillo": 0,
+        "piqua": 0,
+        "inclined": 1,
+        "napper": 1,
+        "sleepers": 2
+      }
+    },
+    {
+      "cpsc_source_record_id": "8733",
+      "recall_number": "20061",
+      "title": "Delta Enterprise Corp. Recalls Incline Sleeper with Adjustable Feeding Position for Newborns to Prevent Risk of Suffocation",
+      "product_name": "Beautyrest Beginnings Incline Sleeper with Adjustable Feeding Position for Newborns; Disney Baby Minnie Mouse Incline Sleeper with Adjustable Feeding Position for Newborns; Delta Children Deluxe 3-in-1 Activity Rocker, Feeder and Sleeper; Simmons Kids Beautyrest Deluxe 3-in-1 Activity Rocker, Feeder, and Sleeper; 3-in-1 Activity Rocker, Feeder and Incline Sleeper and others.",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 1273,
+        "rarest_cpsc_token": 1,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "beautyrest",
+        "beginnings",
+        "newborns",
+        "incline",
+        "suffocation"
+      ],
+      "rare_token_frequencies": {
+        "beautyrest": 1,
+        "beginnings": 2,
+        "newborns": 2,
+        "incline": 5,
+        "suffocation": 5
+      }
+    },
+    {
+      "cpsc_source_record_id": "8734",
+      "recall_number": "20062",
+      "title": "Graco Recalls Little Lounger Rocking Seats to Prevent Risk of Suffocation",
+      "product_name": "Graco Little Lounger Rocking Seat",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 467,
+        "rarest_cpsc_token": 3,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "atlanta",
+        "suffocation",
+        "rocking",
+        "seats",
+        "lounger"
+      ],
+      "rare_token_frequencies": {
+        "atlanta": 3,
+        "suffocation": 5,
+        "rocking": 6,
+        "seats": 17,
+        "lounger": 23
+      }
+    },
+    {
+      "cpsc_source_record_id": "8735",
+      "recall_number": "20064",
+      "title": "Pier 1 Recalls Desk Chairs Due to Fall and Injury Hazards",
+      "product_name": "Desk Chairs",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 210,
+        "rarest_cpsc_token": 4,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "worth",
+        "hazards",
+        "pier",
+        "texas",
+        "fall"
+      ],
+      "rare_token_frequencies": {
+        "worth": 4,
+        "hazards": 5,
+        "pier": 9,
+        "texas": 19,
+        "fall": 30
+      }
+    },
+    {
+      "cpsc_source_record_id": "8736",
+      "recall_number": "20713",
+      "title": "Polaris Recalls Brutus Utility Vehicles (UTVs) Due to Collision and Crash Hazard (Recall Alert)",
+      "product_name": "Model Year 2017-2018 Brutus Utility Vehicles (UTVs)",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 566,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "brutus",
+        "medina",
+        "collision",
+        "minn",
+        "utvs"
+      ],
+      "rare_token_frequencies": {
+        "brutus": 0,
+        "medina": 0,
+        "collision": 1,
+        "minn": 1,
+        "utvs": 1
+      }
+    },
+    {
+      "cpsc_source_record_id": "8737",
+      "recall_number": "20714",
+      "title": "Polaris Recalls Pro XD Utility Vehicles Due to Collision and Crash Hazards (Recall Alert)",
+      "product_name": "Model Year 2019 Polaris PRO XD Utility Vehicles (UTVs)",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 911,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "medina",
+        "collision",
+        "minn",
+        "utvs",
+        "vehicles"
+      ],
+      "rare_token_frequencies": {
+        "medina": 0,
+        "collision": 1,
+        "minn": 1,
+        "utvs": 1,
+        "vehicles": 3
+      }
+    },
+    {
+      "cpsc_source_record_id": "8738",
+      "recall_number": "20715",
+      "title": "Bobcat Company Recalls Utility Vehicles (UTVs) Due to Collision and Crash Hazard (Recall Alert)",
+      "product_name": "Model Year 2017-2018 Bobcat 3650 Utility Vehicles (UTVs)",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 566,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "3650",
+        "bobcat",
+        "medina",
+        "collision",
+        "minn"
+      ],
+      "rare_token_frequencies": {
+        "3650": 0,
+        "bobcat": 0,
+        "medina": 0,
+        "collision": 1,
+        "minn": 1
+      }
+    },
+    {
+      "cpsc_source_record_id": "8739",
+      "recall_number": "20716",
+      "title": "K-Apparel Recalls Children’s Lounge Pants Due to Violation of Federal Flammability Standard; Burn Hazard (Recall Alert)",
+      "product_name": "Children's Lounge Pants",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 319,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "flammability",
+        "violation",
+        "apparel",
+        "pants",
+        "burn"
+      ],
+      "rare_token_frequencies": {
+        "flammability": 0,
+        "violation": 3,
+        "apparel": 4,
+        "pants": 10,
+        "burn": 11
+      }
+    },
+    {
+      "cpsc_source_record_id": "8740",
+      "recall_number": "20066",
+      "title": "Juratoys Recalls Bead Maze Toys Due to Choking Hazard",
+      "product_name": "Sophie la Giraffe Bead Maze",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 152,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "millersburg",
+        "juratoys",
+        "maze",
+        "sophie",
+        "choking"
+      ],
+      "rare_token_frequencies": {
+        "millersburg": 0,
+        "juratoys": 1,
+        "maze": 2,
+        "sophie": 2,
+        "choking": 7
+      }
+    },
+    {
+      "cpsc_source_record_id": "8741",
+      "recall_number": "20067",
+      "title": "Rawlings Recalls Catcher's Helmets Due to Risk of Head Injury",
+      "product_name": "CHMACH-SR Senior Catchers helmets",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 136,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "catchers",
+        "chmach",
+        "rawlings",
+        "senior",
+        "helmets"
+      ],
+      "rare_token_frequencies": {
+        "catchers": 0,
+        "chmach": 0,
+        "rawlings": 0,
+        "senior": 3,
+        "helmets": 4
+      }
+    },
+    {
+      "cpsc_source_record_id": "8742",
+      "recall_number": "20068",
+      "title": "Sun Organic Recalls Wintergreen Essential Oils Due to Failure to Meet Child Resistant Packaging Requirements; Risk of Poisoning",
+      "product_name": "Sun Essential Oils, Wintergreen",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 300,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "ariz",
+        "phoenix",
+        "requirements",
+        "oils",
+        "poisoning"
+      ],
+      "rare_token_frequencies": {
+        "ariz": 0,
+        "phoenix": 2,
+        "requirements": 5,
+        "oils": 6,
+        "poisoning": 6
+      }
+    },
+    {
+      "cpsc_source_record_id": "8743",
+      "recall_number": "20069",
+      "title": "Star Water Systems Recalls Sump Pumps Due to Fire Hazard",
+      "product_name": "Sump Pumps sold under Utilitech, Do It and Star Water Systems brands",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 1797,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "junhe",
+        "pumps",
+        "sump",
+        "utilitech",
+        "holding"
+      ],
+      "rare_token_frequencies": {
+        "junhe": 0,
+        "pumps": 0,
+        "sump": 0,
+        "utilitech": 9,
+        "holding": 17
+      }
+    },
+    {
+      "cpsc_source_record_id": "8744",
+      "recall_number": "20070",
+      "title": "Country Home Products Recalls DR Walk Behind Leaf Blowers Due to Projectile Hazard",
+      "product_name": "Leaf blowers",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 2183,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "blowers",
+        "projectile",
+        "south",
+        "burlington",
+        "country"
+      ],
+      "rare_token_frequencies": {
+        "blowers": 0,
+        "projectile": 1,
+        "south": 8,
+        "burlington": 10,
+        "country": 23
+      }
+    },
+    {
+      "cpsc_source_record_id": "8745",
+      "recall_number": "20071",
+      "title": "Infantino Recalls Infant Carriers Due to Fall Hazard",
+      "product_name": "Go Forward 4-in-1 Evolved Ergonomic, Flip Front2back and Up Close Newborn infant carriers",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 258,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "front2back",
+        "calif",
+        "carriers",
+        "evolved",
+        "diego"
+      ],
+      "rare_token_frequencies": {
+        "front2back": 0,
+        "calif": 2,
+        "carriers": 2,
+        "evolved": 2,
+        "diego": 3
+      }
+    },
+    {
+      "cpsc_source_record_id": "8746",
+      "recall_number": "20717",
+      "title": "Rooms To Go Recalls Patmos Chaise Lounge Chairs Due to Violation of Federal Lead Paint Ban (Recall Alert)",
+      "product_name": "Patmos Chaise Lounge Chairs",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 152,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "ban",
+        "mandiri",
+        "patmos",
+        "sejahtera",
+        "indonesia"
+      ],
+      "rare_token_frequencies": {
+        "ban": 0,
+        "mandiri": 0,
+        "patmos": 0,
+        "sejahtera": 0,
+        "indonesia": 2
+      }
+    },
+    {
+      "cpsc_source_record_id": "8747",
+      "recall_number": "20072",
+      "title": "Fanim Industries Recalls Harbor Breeze Santa Ana Ceiling Fan Due to Injury Hazard; Sold Exclusively at Lowe's Stores",
+      "product_name": "Harbor Breeze Santa Ana ceiling fan",
+      "strategies": {
+        "upc": 1,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 1066,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "fanim",
+        "zionsville",
+        "ind",
+        "ana",
+        "exclusively"
+      ],
+      "rare_token_frequencies": {
+        "fanim": 0,
+        "zionsville": 0,
+        "ind": 7,
+        "ana": 8,
+        "exclusively": 8
+      }
+    },
+    {
+      "cpsc_source_record_id": "8748",
+      "recall_number": "20073",
+      "title": "Textron Specialized Vehicles Recalls Gas-Powered Golf, PTV, Utility and Shuttle Off-Road Vehicles Due to Fire Hazard",
+      "product_name": "Gas-powered E-Z-GO, Cushman and Tracker brand off-road vehicles",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 1460,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "cushman",
+        "shuttle",
+        "ptv",
+        "augusta",
+        "vehicles"
+      ],
+      "rare_token_frequencies": {
+        "cushman": 0,
+        "shuttle": 0,
+        "ptv": 1,
+        "augusta": 3,
+        "vehicles": 3
+      }
+    },
+    {
+      "cpsc_source_record_id": "8749",
+      "recall_number": "20718",
+      "title": "Yamaha Recalls Golf Cars Due to Crash Hazard (Recall Alert)",
+      "product_name": "Yamaha Golf Cars",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 75,
+        "rarest_cpsc_token": 4,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "crash",
+        "cars",
+        "yamaha",
+        "golf",
+        "alert"
+      ],
+      "rare_token_frequencies": {
+        "crash": 4,
+        "cars": 11,
+        "yamaha": 13,
+        "golf": 19,
+        "alert": 30
+      }
+    },
+    {
+      "cpsc_source_record_id": "8750",
+      "recall_number": "20074",
+      "title": "Contigo Reannounces Recall of 5.7 Million Kids Water Bottles Due to Choking Hazard; Additional Incidents with Replacement Lids Provided in Previous Recall",
+      "product_name": "Contigo Kids Cleanable Water Bottles",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 1468,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "reannounces",
+        "cleanable",
+        "ill",
+        "incidents",
+        "choking"
+      ],
+      "rare_token_frequencies": {
+        "reannounces": 0,
+        "cleanable": 1,
+        "ill": 1,
+        "incidents": 4,
+        "choking": 7
+      }
+    },
+    {
+      "cpsc_source_record_id": "8751",
+      "recall_number": "20075",
+      "title": "Kolcraft Recalls Inclined Sleeper Accessory Included with Cuddle 'n Care and Preferred Position 2-in-1 Bassinets & Incline Sleepers to Prevent Risk of Suffocation",
+      "product_name": "Inclined sleeper accessory included with Kolcraft Cuddle 'n Care 2-in-1 Bassinet & Incline Sleepers and Preferred Position 2-in-1 Bassinet & Incline Sleepers",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 355,
+        "rarest_cpsc_token": 1,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "bassinets",
+        "ill",
+        "inclined",
+        "preferred",
+        "sleepers"
+      ],
+      "rare_token_frequencies": {
+        "bassinets": 1,
+        "ill": 1,
+        "inclined": 1,
+        "preferred": 2,
+        "sleepers": 2
+      }
+    },
+    {
+      "cpsc_source_record_id": "8752",
+      "recall_number": "20076",
+      "title": "Browning Recalls Pistol Holsters Due to Injury Hazard",
+      "product_name": "Browning Leather Pistol Holsters",
+      "strategies": {
+        "upc": 0,
+        "cpsc_brand_to_incident_brand": 0,
+        "brand_model": 0,
+        "any_identity_token": 84,
+        "rarest_cpsc_token": 0,
+        "rarest_two_cpsc_tokens": 0
+      },
+      "rarest_tokens": [
+        "holsters",
+        "browning",
+        "morgan",
+        "pistol",
+        "utah"
+      ],
+      "rare_token_frequencies": {
+        "holsters": 0,
+        "browning": 1,
+        "morgan": 1,
+        "pistol": 3,
+        "utah": 7
+      }
+    }
+  ]
+}

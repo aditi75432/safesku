@@ -1,0 +1,87 @@
+{
+  "cpsc_recall_count": 1005,
+  "saferproducts_incident_count": 13696,
+  "strategy_stats": {
+    "upc": {
+      "with_candidates": 9,
+      "min": 0,
+      "median": 0,
+      "p90": 0,
+      "max": 4
+    },
+    "product_phrase": {
+      "with_candidates": 38,
+      "min": 0,
+      "median": 0,
+      "p90": 0,
+      "max": 93
+    },
+    "product_2_tokens": {
+      "with_candidates": 777,
+      "min": 0,
+      "median": 6,
+      "p90": 47,
+      "max": 1510
+    },
+    "product_3_tokens": {
+      "with_candidates": 397,
+      "min": 0,
+      "median": 0,
+      "p90": 6,
+      "max": 448
+    },
+    "company_to_manufacturer": {
+      "with_candidates": 3,
+      "min": 0,
+      "median": 0,
+      "p90": 0,
+      "max": 3
+    },
+    "union": {
+      "with_candidates": 783,
+      "min": 0,
+      "median": 6,
+      "p90": 48,
+      "max": 1510
+    }
+  },
+  "seed_recovery_from_exact_upc_pairs": {
+    "upc": {
+      "seed_recalls": 9,
+      "seed_pairs": 13,
+      "recalls_with_recovery": 9,
+      "recovered_pairs": 13
+    },
+    "product_phrase": {
+      "seed_recalls": 9,
+      "seed_pairs": 13,
+      "recalls_with_recovery": 0,
+      "recovered_pairs": 0
+    },
+    "product_2_tokens": {
+      "seed_recalls": 9,
+      "seed_pairs": 13,
+      "recalls_with_recovery": 8,
+      "recovered_pairs": 11
+    },
+    "product_3_tokens": {
+      "seed_recalls": 9,
+      "seed_pairs": 13,
+      "recalls_with_recovery": 7,
+      "recovered_pairs": 10
+    },
+    "company_to_manufacturer": {
+      "seed_recalls": 9,
+      "seed_pairs": 13,
+      "recalls_with_recovery": 0,
+      "recovered_pairs": 0
+    },
+    "union": {
+      "seed_recalls": 9,
+      "seed_pairs": 13,
+      "recalls_with_recovery": 9,
+      "recovered_pairs": 13
+    }
+  },
+  "note": "The 13 exact-UPC pairs are high-confidence identity seeds, not a complete ground-truth set. Seed recovery measures whether candidate blocking can rediscover known linked incidents without using UPC."
+}

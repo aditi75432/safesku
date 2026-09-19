@@ -1,0 +1,170 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SafeSKU cloud product: evidence-grounded marketplace safety investigation.
+
+Resources:
+  SafeSkuDataBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders: ['*']
+            AllowedMethods: [PUT, HEAD]
+            AllowedOrigins: ['*']
+            ExposedHeaders: [ETag]
+      LifecycleConfiguration:
+        Rules:
+          - Id: AbortIncompleteMultipartUploads
+            Status: Enabled
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 1
+
+  SafeSkuStateTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+        - AttributeName: sk
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+        - AttributeName: sk
+          KeyType: RANGE
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+
+  SafeSkuApi:
+    Type: AWS::Serverless::Function
+    Metadata:
+      Dockerfile: Dockerfile.safesku-demo
+      DockerContext: ..
+      DockerTag: safesku-cloud-v1
+    Properties:
+      PackageType: Image
+      Timeout: 60
+      Environment:
+        Variables:
+          SAFE_SKU_CLOUD_MODE: 'true'
+          SAFE_SKU_AGENT_MODE: 'bedrock'
+          SAFE_SKU_BEDROCK_MODEL: 'us.amazon.nova-micro-v1:0'
+          SAFE_SKU_UPLOAD_BUCKET: !Ref SafeSkuDataBucket
+          SAFE_SKU_STATE_TABLE: !Ref SafeSkuStateTable
+          SAFE_SKU_STATE_MACHINE_ARN: !GetAtt SafeSkuPipeline.Arn
+      MemorySize: 2048
+      EphemeralStorage:
+        Size: 2048
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - s3:PutObject
+                - s3:GetObject
+                - s3:HeadObject
+              Resource: !Sub '${SafeSkuDataBucket.Arn}/*'
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+                - dynamodb:Query
+              Resource: !GetAtt SafeSkuStateTable.Arn
+            - Effect: Allow
+              Action:
+                - states:StartExecution
+              Resource: !GetAtt SafeSkuPipeline.Arn
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+                - bedrock:InvokeModelWithResponseStream
+              Resource: '*'
+      Events:
+        ProxyApi:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+        RootApi:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: ANY
+
+  SafeSkuIngestor:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../apps/api/
+      Runtime: python3.12
+      Environment:
+        Variables:
+          SAFE_SKU_UPLOAD_BUCKET: !Ref SafeSkuDataBucket
+          SAFE_SKU_STATE_TABLE: !Ref SafeSkuStateTable
+      Handler: app.cloud_worker.handler
+      Timeout: 900
+      MemorySize: 3008
+      EphemeralStorage:
+        Size: 10240
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - s3:GetObject
+                - s3:HeadObject
+                - s3:PutObject
+              Resource: !Sub '${SafeSkuDataBucket.Arn}/*'
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+              Resource: !GetAtt SafeSkuStateTable.Arn
+
+  SafeSkuPipeline:
+    Type: AWS::Serverless::StateMachine
+    Properties:
+      Type: STANDARD
+      DefinitionSubstitutions:
+        IngestorArn: !GetAtt SafeSkuIngestor.Arn
+      DefinitionBody:
+        StartAt: IngestBundle
+        States:
+          IngestBundle:
+            Type: Task
+            Resource: '${IngestorArn}'
+            TimeoutSeconds: 900
+            Retry:
+              - ErrorEquals:
+                  - Lambda.ServiceException
+                  - Lambda.AWSLambdaException
+                  - Lambda.SdkClientException
+                IntervalSeconds: 2
+                MaxAttempts: 2
+                BackoffRate: 2
+            End: true
+      Policies:
+        - LambdaInvokePolicy:
+            FunctionName: !Ref SafeSkuIngestor
+
+Outputs:
+  SafeSkuApiUrl:
+    Description: Public SafeSKU API and web console URL.
+    Value: !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'
+  SafeSkuUploadBucket:
+    Description: S3 bucket for SafeSKU bundle uploads and workspace snapshots.
+    Value: !Ref SafeSkuDataBucket
+  SafeSkuStateTable:
+    Description: DynamoDB control-plane table for jobs, reviews, and history.
+    Value: !Ref SafeSkuStateTable
+  SafeSkuPipeline:
+    Description: Step Functions state machine for bundle ingestion.
+    Value: !GetAtt SafeSkuPipeline.Arn

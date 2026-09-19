@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SafeSKU | Product Safety Intelligence</title>
+  <style>
+    :root { --bg:#f5f7fb; --panel:#fff; --text:#152033; --muted:#657087; --line:#e5e9f0; --accent:#1f5eff; --good:#087f5b; --warn:#a35b00; --bad:#b42318; --shadow:0 12px 36px rgba(21,32,51,.08); }
+    * { box-sizing:border-box } body { margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:var(--bg); color:var(--text) }
+    button,input,select { font:inherit } button { cursor:pointer }
+    .app { min-height:100vh; display:grid; grid-template-columns:240px 1fr }
+    .side { background:#0f172a; color:#dbe4f6; padding:22px 16px; position:sticky; top:0; height:100vh }
+    .brand { font-weight:800; font-size:20px; color:#fff; margin-bottom:4px }.tag { font-size:12px; color:#98a5bf; margin-bottom:28px }
+    .nav button { width:100%; text-align:left; border:0; background:transparent; color:#b9c4da; padding:11px 12px; border-radius:9px; margin:3px 0 }.nav button.active,.nav button:hover { background:#1a2743; color:#fff }
+    .side-foot { position:absolute; bottom:18px; left:16px; right:16px; font-size:11px; color:#8794ad; line-height:1.5 }
+    main { min-width:0; padding:30px 34px 50px; max-width:1500px; width:100%; margin:auto }
+    .top { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:24px }.eyebrow { font-size:12px; text-transform:uppercase; letter-spacing:.14em; color:var(--accent); font-weight:800 }.title { font-size:31px; margin:4px 0 8px; letter-spacing:-.03em }.subtitle { color:var(--muted); max-width:820px; line-height:1.5 }
+    .live { background:#eef8f4; color:var(--good); border:1px solid #cfe9de; border-radius:999px; padding:8px 11px; font-size:12px; white-space:nowrap }
+    .hidden { display:none !important }
+    .grid { display:grid; gap:16px }.metrics { grid-template-columns:repeat(5,minmax(0,1fr)); margin-bottom:18px }.metric,.panel { background:var(--panel); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow) }.metric { padding:17px }.metric .v { font-size:27px; font-weight:800; margin:5px 0 2px }.metric .l { color:var(--muted); font-size:12px }
+    .two { grid-template-columns:1.1fr .9fr }.three { grid-template-columns:repeat(3,1fr) }.panel { padding:18px }.panel h3 { margin:0 0 5px; font-size:16px }.panel-head { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:14px }.muted { color:var(--muted) }.small { font-size:12px }
+    .upload-grid { grid-template-columns:repeat(2,minmax(0,1fr)) }.upload { border:1px dashed #cfd6e4; border-radius:13px; padding:16px; background:#fbfcff }.upload .name { font-weight:750; margin-bottom:3px }.upload input { width:100%; margin-top:13px }.upload .hint { margin-top:8px; color:var(--muted); font-size:12px; line-height:1.45 }
+    .btn { border:1px solid var(--line); background:#fff; color:var(--text); padding:9px 12px; border-radius:9px; font-weight:700 }.btn.primary { background:var(--accent); border-color:var(--accent); color:#fff }.btn.danger { color:var(--bad) }.btn:disabled { opacity:.55; cursor:not-allowed }
+    .actions { display:flex; gap:9px; flex-wrap:wrap }.search { display:flex; gap:9px; margin-bottom:14px }.search input { flex:1; border:1px solid var(--line); padding:11px 13px; border-radius:9px; background:#fff }
+    .dataset,.result,.candidate,.queue-row { border:1px solid var(--line); border-radius:12px; padding:13px; margin-top:9px; background:#fff }.row { display:flex; justify-content:space-between; gap:12px; align-items:center }.dataset .name,.result .name,.candidate .name { font-weight:750 }.meta { color:var(--muted); font-size:12px; margin-top:4px }.chip { display:inline-flex; align-items:center; gap:5px; border:1px solid var(--line); background:#f8fafc; padding:4px 8px; border-radius:999px; font-size:11px; font-weight:700 }.chip.ok { color:var(--good); background:#effaf6; border-color:#cfe9de }.chip.warn { color:var(--warn); background:#fff8eb; border-color:#f1dfb7 }.chip.bad { color:var(--bad); background:#fff2f0; border-color:#f0c4bf }
+    .bar { background:#eef2f7; height:9px; border-radius:999px; overflow:hidden; margin-top:9px }.bar > div { height:100%; background:var(--accent); width:0; transition:width .25s }
+    .case-grid { grid-template-columns:2fr 1fr }.product { font-size:22px; font-weight:800; letter-spacing:-.02em }.kv { display:grid; grid-template-columns:170px 1fr; gap:8px; font-size:13px }.kv div:nth-child(odd) { color:var(--muted) }
+    .timeline .event { display:grid; grid-template-columns:95px 1fr auto; gap:12px; padding:11px 0; border-top:1px solid var(--line); align-items:center }.timeline .event:first-child { border-top:0 }.date { font-size:12px; color:var(--muted) }.event.pre { background:#fbf7ef; border-radius:9px; padding-left:8px; padding-right:8px }.source { font-size:11px; color:var(--muted); margin-top:3px }.evidence { color:var(--accent); font-size:11px; font-weight:750; cursor:pointer }
+    .candidate-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px }.candidate .score { font-size:23px; font-weight:800 }.candidate-actions { display:flex; gap:7px; margin-top:12px; flex-wrap:wrap }.candidate-actions button { font-size:11px; padding:7px 9px; border-radius:8px; border:1px solid var(--line); background:#fff }.candidate-actions .match { color:var(--good) }.candidate-actions .reject { color:var(--bad) }.candidate-actions .uncertain { color:var(--warn) }
+    .empty { padding:24px 8px; text-align:center; color:var(--muted); font-size:13px }.notice { background:#f7f9fc; border:1px solid var(--line); border-radius:10px; padding:11px 12px; font-size:12px; color:#516076; line-height:1.5 }
+    .trace-item { display:grid; grid-template-columns:28px 1fr auto; gap:10px; align-items:center; border-top:1px solid var(--line); padding:10px 0 }.num { width:24px; height:24px; display:grid; place-items:center; border-radius:50%; background:#edf2ff; color:var(--accent); font-size:11px; font-weight:800 }.status { font-size:11px; color:var(--good); font-weight:800 }.duration { font-size:10px; color:var(--muted); margin-top:2px }
+    .modal { position:fixed; inset:0; background:rgba(8,15,30,.45); display:none; place-items:center; padding:20px; z-index:20 }.modal.open { display:grid }.modal-card { background:#fff; width:min(900px,100%); max-height:82vh; overflow:auto; border-radius:15px; box-shadow:0 24px 80px rgba(0,0,0,.2); padding:20px }.modal-pre { white-space:pre-wrap; background:#0f172a; color:#e5edf9; border-radius:10px; padding:14px; font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace; overflow:auto }
+    .toast { position:fixed; right:20px; bottom:20px; background:#0f172a; color:#fff; padding:11px 14px; border-radius:10px; box-shadow:var(--shadow); display:none; z-index:30; max-width:420px; font-size:12px }.toast.show { display:block }
+    @media (max-width:1000px) { .app { grid-template-columns:1fr }.side { position:relative; height:auto; display:flex; align-items:center; gap:14px }.side-foot { display:none }.nav { display:flex; gap:5px; overflow:auto }.nav button { width:auto; white-space:nowrap }.metrics,.upload-grid,.case-grid,.two,.three,.candidate-grid { grid-template-columns:1fr 1fr } main { padding:22px 16px 35px } }
+    @media (max-width:700px) { .metrics,.upload-grid,.case-grid,.two,.three,.candidate-grid { grid-template-columns:1fr } .kv { grid-template-columns:125px 1fr } }
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div>
+      <div class="brand">SafeSKU</div>
+      <div class="tag">Evidence first · AI second</div>
+      <nav class="nav">
+        <button data-tab="workspace" class="active">Data workspace</button>
+        <button data-tab="investigate">Investigate</button>
+        <button data-tab="review">Review queue</button>
+      </nav>
+    </div>
+    <div class="side-foot">Marketplace product-safety intelligence with explicit source provenance, temporal evidence, and human review.</div>
+  </aside>
+
+  <main>
+    <section class="top">
+      <div>
+        <div class="eyebrow">Amazon marketplace safety intelligence</div>
+        <div class="title">Turn safety artifacts into an investigation system.</div>
+        <div class="subtitle">Upload the artifacts you already have, let SafeSKU normalize and index them, then investigate any recalled product through identity evidence, public safety reports, temporal signals, and an auditable human-review workflow.</div>
+      </div>
+      <div class="live" id="liveStatus">● local workspace</div>
+    </section>
+
+    <section id="tab-workspace">
+      <div class="grid metrics" id="metrics"></div>
+      <div class="grid two">
+        <div class="panel">
+          <div class="panel-head"><div><h3>1. Add a SafeSKU data bundle</h3><div class="muted small">For normal use, upload one bundle. SafeSKU reads the manifest, verifies checksums, registers each source, and starts ingestion automatically.</div></div><span class="chip ok">Recommended</span></div>
+          <div class="upload" style="padding:20px">
+            <div class="name">SafeSKU Bundle (.zip)</div>
+            <div class="small muted">One file can contain CPSC recalls, SaferProducts incidents, Amazon products, targeted reviews, and SafeSKU linkage artifacts.</div>
+            <input id="bundleInput" type="file" accept=".zip" style="width:100%;margin-top:14px" />
+            <div id="bundleStatus" class="notice" style="margin-top:12px">No bundle imported yet. Use the bundle builder script to package the real artifacts you already generated.</div>
+          </div>
+          <details style="margin-top:14px">
+            <summary style="cursor:pointer;font-weight:750">Advanced: upload individual source files</summary>
+            <div class="grid upload-grid" style="margin-top:12px">
+              <div class="upload"><div class="name">CPSC recalls</div><div class="small muted">Official recall records</div><input type="file" data-source="cpsc" accept=".csv,.json,.jsonl,.ndjson,.gz" /></div>
+              <div class="upload"><div class="name">SaferProducts.gov</div><div class="small muted">Public consumer incident records</div><input type="file" data-source="saferproducts" accept=".csv,.json,.jsonl,.ndjson,.gz" /></div>
+              <div class="upload"><div class="name">Amazon products</div><div class="small muted">Amazon Reviews 2023 product metadata</div><input type="file" data-source="amazon_products" accept=".csv,.json,.jsonl,.ndjson,.gz" /></div>
+              <div class="upload"><div class="name">Amazon reviews</div><div class="small muted">Optional targeted review text and ratings</div><input type="file" data-source="amazon_reviews" accept=".csv,.json,.jsonl,.ndjson,.gz" /></div>
+              <div class="upload"><div class="name">SafeSKU linkage artifact</div><div class="small muted">Candidate/label artifact from the benchmark pipeline</div><input type="file" data-source="linkage" accept=".csv,.json,.jsonl,.ndjson,.gz" /></div>
+              <div class="upload"><div class="name">Automatic source detection</div><div class="small muted">SafeSKU infers the source from schema and filename.</div><input type="file" data-source="" accept=".csv,.json,.jsonl,.ndjson,.gz" /></div>
+            </div>
+          </details>
+          <div class="notice" style="margin-top:14px"><strong>What this means for you:</strong> build one SafeSKU Bundle once, then upload that single ZIP here. On AWS, the browser sends the ZIP directly to S3 and SafeSKU starts the ingestion workflow automatically.</div>
+          <details style="margin-top:12px"><summary style="cursor:pointer;font-weight:750">What should my bundle contain?</summary><div class="small muted" style="margin-top:10px;line-height:1.6"><strong>Recommended:</strong> CPSC recalls + SaferProducts.gov incidents + Amazon product metadata. <strong>Optional:</strong> Amazon reviews and SafeSKU linkage candidates. The ZIP must contain a <code>manifest.json</code> and each dataset must be declared with its source type, path, byte count and SHA-256. See <code>docs/BUNDLE_FORMAT.md</code> in the repository.</div></details>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><div><h3>2. Pipeline</h3><div class="muted small" id="pipelineMessage">Waiting for your bundle.</div></div><button class="btn primary" id="analyzeBtn">Analyze all</button></div>
+          <div id="jobPanel" class="notice">Upload a SafeSKU Bundle to enable the investigation pipeline.</div>
+          <div style="margin-top:15px"><h3>Datasets</h3><div id="datasets"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-investigate" class="hidden">
+      <div class="panel">
+        <div class="panel-head"><div><h3>Investigator</h3><div class="muted small">Search your live workspace, select a recall, and run the evidence-backed investigation.</div></div><span class="chip" id="agentBadge">local deterministic</span></div>
+        <div class="search"><input id="query" placeholder="Search by recall number, product name, hazard, or keyword" /><button class="btn primary" id="searchBtn">Search</button></div>
+        <div id="results"></div>
+      </div>
+      <div id="investigationView" class="hidden" style="margin-top:16px">
+        <div class="grid metrics" id="caseMetrics"></div>
+        <div class="grid case-grid">
+          <div class="panel"><div class="panel-head"><div><div class="eyebrow">Investigation</div><div class="product" id="caseProduct"></div><div class="muted small" id="caseRecall"></div></div><div class="actions"><button class="btn" id="exportJson">Export JSON</button><button class="btn" id="exportCsv">Export CSV</button></div></div><div class="kv" id="caseFacts"></div><div class="notice" id="brief" style="margin-top:16px"></div></div>
+          <div class="panel"><div class="panel-head"><div><h3>Investigation posture</h3></div><span class="chip" id="posture"></span></div><div id="postureBody" class="small muted"></div><div class="notice" style="margin-top:14px">A linkage score is evidence for identity resolution, not a calibrated probability. SafeSKU does not treat temporal association as causal proof.</div></div>
+        </div>
+        <div class="grid two" style="margin-top:16px">
+          <div class="panel"><div class="panel-head"><div><h3>Evidence timeline</h3><div class="muted small">Event time, not model time.</div></div></div><div class="timeline" id="timeline"></div></div>
+          <div class="panel"><div class="panel-head"><div><h3>Agent trace</h3><div class="muted small" id="traceMode"></div></div></div><div id="trace"></div></div>
+        </div>
+        <div class="panel" style="margin-top:16px"><div class="panel-head"><div><h3>Marketplace identity candidates</h3><div class="muted small">Confirm, reject, or defer. Decisions are persisted in the workspace.</div></div><select id="candidateFilter" class="btn"><option value="all">All</option><option value="unreviewed">Unreviewed</option><option value="reviewed">Reviewed</option><option value="strong">Score ≥ 0.70</option></select></div><div class="candidate-grid" id="candidates"></div></div>
+        <div class="grid two" style="margin-top:16px">
+          <div class="panel"><div class="panel-head"><div><h3>Public marketplace references</h3><div class="muted small">Extracted from source narratives. Not independent confirmation of SKU identity.</div></div></div><div id="marketRefs"></div></div>
+          <div class="panel"><div class="panel-head"><div><h3>Findings</h3></div></div><div id="findings"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tab-review" class="hidden">
+      <div class="panel"><div class="panel-head"><div><h3>Human review queue</h3><div class="muted small">The system surfaces candidates where identity evidence is not sufficient for automatic confirmation.</div></div><button class="btn" id="refreshQueue">Refresh</button></div><div id="queue"></div></div>
+    </section>
+  </main>
+</div>
+
+<div id="modal" class="modal"><div class="modal-card"><div class="panel-head"><h3 id="modalTitle">Evidence</h3><button class="btn" id="modalClose">Close</button></div><div id="modalBody"></div></div></div>
+<div id="toast" class="toast"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+let activeRecall = null;
+let currentCase = null;
+let autoAnalysisStarted = false;
+let cloudMode = false;
+
+function esc(v){return String(v ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function chip(text, cls=''){return `<span class="chip ${cls}">${esc(text)}</span>`;}
+function toast(message){$('toast').textContent=message;$('toast').classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>$('toast').classList.remove('show'),3500)}
+async function api(url, opts={}){const r=await fetch(url,opts);const t=await r.text();let d;try{d=JSON.parse(t)}catch{d={detail:t}}if(!r.ok)throw new Error(d.detail||`HTTP ${r.status}`);return d;}
+
+function showTab(name){document.querySelectorAll('[id^="tab-"]').forEach(x=>x.classList.add('hidden'));$(`tab-${name}`).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));if(name==='review')refreshQueue();}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+
+async function loadCloudConfig(){
+  try{
+    const d=await api('/api/cloud/config');
+    cloudMode=Boolean(d.enabled);
+    $('liveStatus').textContent=cloudMode?'● AWS cloud workspace':'● local workspace';
+    $('agentBadge').textContent=cloudMode?'AWS Bedrock + Strands':'local deterministic';
+    if(cloudMode){
+      const advanced=$('advancedUploads'); if(advanced) advanced.style.display='none';
+      $('analyzeBtn').textContent='Analysis runs automatically in AWS';
+      $('analyzeBtn').disabled=true;
+    }
+  }catch{
+    cloudMode=false;
+  }
+}
+
+async function refreshOverview(){
+  const d=await api('/api/workspace/overview');
+  const m=[['datasets',d.datasets||0,'Datasets'],['recalls',d.recalls||0,'Official recalls'],['incidents',d.incidents||0,'Public incidents'],['marketplace_products',d.marketplace_products||0,'Marketplace products'],['marketplace_reviews',d.marketplace_reviews||0,'Marketplace reviews']];
+  $('metrics').innerHTML=m.map(x=>`<div class="metric"><div class="v">${Number(x[1]).toLocaleString()}</div><div class="l">${x[2]}</div></div>`).join('');
+  if(!cloudMode) $('analyzeBtn').disabled=!d.recalls;
+  $('pipelineMessage').textContent=d.recalls?`${Number(d.recalls).toLocaleString()} recalls are available for investigation.`:(cloudMode?'Upload a bundle. AWS will validate and analyze it automatically.':'Waiting for a CPSC recall dataset.');
+}
+
+async function refreshDatasets(){
+  const d=await api('/api/workspace/datasets');
+  const rows=d.datasets||[];
+  $('datasets').innerHTML=rows.length?rows.map(x=>{
+    const pct=x.row_count?Math.min(100,(Number(x.accepted_count)+Number(x.rejected_count))/Math.max(1,Number(x.row_count))*100):x.status==='ready'?100:0;
+    const status=x.status==='ready'?chip('READY','ok'):x.status==='failed'?chip('FAILED','bad'):x.status==='processing'?chip('PROCESSING','warn'):chip('QUEUED');
+    return `<div class="dataset"><div class="row"><div><div class="name">${esc(x.file_name)}</div><div class="meta">${esc(x.source_type)} · ${Number(x.accepted_count).toLocaleString()} accepted · ${Number(x.rejected_count).toLocaleString()} rejected · ${esc(x.dataset_id)}</div></div><div>${status}</div></div>${x.status!=='queued'?`<div class="bar"><div style="width:${pct}%"></div></div>`:''}${x.error_message?`<div class="meta" style="color:var(--bad)">${esc(x.error_message)}</div>`:''}<div class="actions" style="margin-top:9px"><button class="btn danger" data-delete="${esc(x.dataset_id)}">Remove</button></div></div>`;
+  }).join(''):'<div class="empty">No datasets yet. Upload the first artifact above.</div>';
+  document.querySelectorAll('[data-delete]').forEach(b=>b.addEventListener('click',async()=>{if(!confirm('Remove this dataset and its indexed records?'))return;try{await api('/api/workspace/datasets/'+encodeURIComponent(b.dataset.delete),{method:'DELETE'});toast('Dataset removed.');await refreshAll()}catch(e){toast(e.message)}}));
+}
+
+async function uploadFile(input){
+  const file=input.files?.[0]; if(!file)return;
+  input.disabled=true;
+  const fd=new FormData();fd.append('file',file);
+  const source=input.dataset.source;
+  const url='/api/workspace/datasets/upload'+(source?'?source_type='+encodeURIComponent(source):'');
+  try{
+    const d=await api(url,{method:'POST',body:fd});
+    toast(`${file.name} accepted as ${d.dataset.source_type}. Ingestion started.`);
+    await waitDataset(d.dataset.dataset_id);
+    await refreshAll();
+    maybeAutoAnalyze();
+  }catch(e){toast(e.message)}finally{input.disabled=false;input.value='';}
+}
+async function waitDataset(id){
+  for(let i=0;i<600;i++){
+    const rows=(await api('/api/workspace/datasets')).datasets;
+    const row=rows.find(x=>x.dataset_id===id);
+    if(!row)return;
+    if(row.status==='ready'){toast(`${row.file_name} is indexed: ${Number(row.accepted_count).toLocaleString()} records.`);return;}
+    if(row.status==='failed')throw new Error(row.error_message||'Dataset ingestion failed.');
+    await new Promise(r=>setTimeout(r,500));
+  }
+  throw new Error('Ingestion is still running. Leave this page open and refresh the workspace later.');
+}
+document.querySelectorAll('input[type=file][data-source]').forEach(i=>i.addEventListener('change',()=>uploadFile(i)));
+
+async function importBundle(input){
+  const file=input.files?.[0];
+  if(!file)return;
+  $('bundleStatus').textContent=`Preparing ${file.name} (${(file.size/1024/1024).toFixed(1)} MiB)…`;
+  try{
+    if(cloudMode){
+      const presign=await api(`/api/cloud/uploads/presign?filename=${encodeURIComponent(file.name)}&size_bytes=${encodeURIComponent(file.size)}`,{method:'POST'});
+      $('bundleStatus').textContent=`Uploading ${file.name} directly to AWS S3…`;
+      const upload=presign.upload;
+      const put=await fetch(upload.url,{method:'PUT',headers:{'Content-Type':'application/zip'},body:file});
+      if(!put.ok) throw new Error(`S3 upload failed (HTTP ${put.status}).`);
+      $('bundleStatus').textContent='Upload complete. Starting SafeSKU ingestion workflow…';
+      const complete=await api('/api/cloud/uploads/complete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({upload_id:upload.upload_id,key:upload.key,filename:upload.filename})});
+      const jobId=complete.job.job_id;
+      await pollCloudJob(jobId);
+      await refreshAll();
+      $('bundleStatus').innerHTML='<strong>Bundle ready.</strong> AWS has published the current SafeSKU workspace.';
+      return;
+    }
+    const started=await api('/api/workspace/bundles/upload/start',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({filename:file.name,size_bytes:file.size})
+    });
+    const chunkSize=Number(started.chunk_size||1048576);
+    const totalChunks=Number(started.total_chunks||Math.ceil(file.size/chunkSize));
+    const uploadId=started.upload_id;
+    const toBase64=bytes=>{
+      let binary='';
+      const step=0x8000;
+      for(let i=0;i<bytes.length;i+=step){binary+=String.fromCharCode(...bytes.subarray(i,Math.min(i+step,bytes.length)));}
+      return btoa(binary);
+    };
+    for(let index=0;index<totalChunks;index++){
+      const start=index*chunkSize;
+      const end=Math.min(file.size,start+chunkSize);
+      const bytes=new Uint8Array(await file.slice(start,end).arrayBuffer());
+      await api('/api/workspace/bundles/upload/chunk',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({upload_id:uploadId,chunk_index:index,total_chunks:totalChunks,data:toBase64(bytes)})
+      });
+      const pct=Math.round((index+1)/totalChunks*100);
+      $('bundleStatus').textContent=`Uploading ${file.name} · ${index+1}/${totalChunks} chunks · ${pct}%`;
+    }
+    $('bundleStatus').textContent='Upload complete. SafeSKU is validating the bundle…';
+    const d=await api('/api/workspace/bundles/upload/complete',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({upload_id:uploadId,total_chunks:totalChunks})
+    });
+    const rows=d.bundle?.datasets||[];
+    $('bundleStatus').innerHTML=`<strong>Bundle accepted.</strong> ${rows.length} dataset(s) registered. Ingestion is running in the background.`;
+    toast(`SafeSKU bundle imported: ${rows.length} dataset(s).`);
+    await refreshAll();
+    for(const row of rows){ if(row.status==='queued') await waitDataset(row.dataset_id); }
+    await refreshAll();
+    $('bundleStatus').innerHTML=`<strong>Bundle ready.</strong> ${rows.length} dataset(s) have been registered and ingested.`;
+    toast('SafeSKU bundle is ready for analysis.');
+  }catch(e){
+    $('bundleStatus').textContent=`Bundle import failed: ${e.message}`;
+    toast(e.message);
+  }finally{input.value='';}
+}
+
+async function pollCloudJob(id){
+  for(let i=0;i<1200;i++){
+    const j=await api('/api/cloud/jobs/'+encodeURIComponent(id));
+    const total=Number(j.total||0), processed=Number(j.processed||0), pct=total?Math.min(100,processed/total*100):0;
+    $('jobPanel').innerHTML=`<strong>${esc(String(j.status||'').toUpperCase())}</strong><div class="muted small" style="margin-top:4px">${esc(j.message||'')}</div><div class="bar"><div style="width:${pct}%"></div></div><div class="meta">${processed.toLocaleString()} / ${total.toLocaleString()} datasets processed · AWS Step Functions workflow</div>`;
+    if(j.status==='completed'){toast('AWS SafeSKU workspace is ready.');return;}
+    if(j.status==='failed')throw new Error(j.message||'AWS ingestion failed.');
+    await new Promise(r=>setTimeout(r,1500));
+  }
+  throw new Error('AWS ingestion is still running. Refresh the workspace to check progress.');
+}
+
+$('bundleInput').addEventListener('change',()=>importBundle($('bundleInput')));
+
+async function startAnalysis(){
+  $('analyzeBtn').disabled=true;
+  try{
+    const d=await api('/api/workspace/analyze',{method:'POST'}); await pollJob(d.job.job_id);
+  }catch(e){toast(e.message)}finally{await refreshOverview();$('analyzeBtn').disabled=false;}
+}
+$('analyzeBtn').addEventListener('click',startAnalysis);
+async function pollJob(id){
+  for(let i=0;i<900;i++){
+    const j=await api('/api/workspace/jobs/'+encodeURIComponent(id));
+    const total=Number(j.total||0), processed=Number(j.processed||0), pct=total?processed/total*100:0;
+    $('jobPanel').innerHTML=`<strong>${esc(j.status.toUpperCase())}</strong><div class="muted small" style="margin-top:4px">${esc(j.message||'')}</div><div class="bar"><div style="width:${pct}%"></div></div><div class="meta">${processed.toLocaleString()} / ${total.toLocaleString()} recall investigations prepared</div>`;
+    if(j.status==='completed'){toast('SafeSKU analysis is ready.');return;}
+    if(j.status==='failed')throw new Error(j.message||'Analysis failed.');
+    await new Promise(r=>setTimeout(r,700));
+  }
+  toast('Analysis is still running in the background.');
+}
+async function maybeAutoAnalyze(){
+  if(autoAnalysisStarted)return;
+  const d=await api('/api/workspace/overview');
+  if(d.recalls){autoAnalysisStarted=true;await startAnalysis();}
+}
+
+async function search(){
+  const q=$('query').value.trim();if(!q)return;
+  try{const d=await api('/api/search?q='+encodeURIComponent(q));
+    $('results').innerHTML=d.results?.length?d.results.map(r=>`<div class="result"><div class="row"><div><div class="name">${esc(r.product_name||r.title||'Marketplace product')}</div><div class="meta">${r.recall_number?`CPSC #${esc(r.recall_number)} · ${esc(r.recall_date||'')}`:'Marketplace product'}</div></div>${r.recall_number?`<button class="btn primary" data-investigate="${esc(r.recall_number)}">Investigate</button>`:''}</div><div class="meta">${esc(r.title||'')} ${r.parent_asin?`· ASIN ${esc(r.parent_asin)}`:''}</div></div>`).join(''):'<div class="empty">No matches. Try a recall number or a distinctive product term.</div>';
+    document.querySelectorAll('[data-investigate]').forEach(b=>b.addEventListener('click',()=>investigate(b.dataset.investigate)));
+  }catch(e){toast(e.message)}
+}
+$('searchBtn').addEventListener('click',search);$('query').addEventListener('keydown',e=>{if(e.key==='Enter')search()});
+
+async function investigate(recall){
+  activeRecall=String(recall); showTab('investigate');
+  $('investigationView').classList.remove('hidden');
+  $('caseProduct').textContent='Loading investigation...';
+  $('caseMetrics').innerHTML='';
+  try{
+    const d=await api('/api/investigations',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:`Investigate recall ${activeRecall}`,recall_number:activeRecall})});
+    currentCase=d; renderCase(d);
+  }catch(e){$('caseProduct').textContent='';toast(e.message)}
+}
+
+function renderCase(d){
+  const ds=d.derived_signals||{}, incidents=d.incidents||[], candidates=d.amazon_candidates||[];
+  $('agentBadge').textContent=d.agent_mode||'local_deterministic';
+  $('caseProduct').textContent=d.recall?.product_name||d.recall?.title||'Unnamed product';
+  $('caseRecall').textContent=`CPSC #${d.recall?.recall_number||activeRecall} · recall date ${d.recall?.recall_date||'unknown'}`;
+  $('caseFacts').innerHTML=`<div>Hazards</div><div>${esc(Array.isArray(d.recall?.hazards)?d.recall.hazards.join(', '):d.recall?.hazards||'Not provided')}</div><div>Source record</div><div>${esc(d.recall?.source_record_id||'')}</div><div>Identity candidates</div><div>${candidates.length}</div><div>Public incidents</div><div>${incidents.length}</div>`;
+  const metrics=[['Public incidents',incidents.length],['Identity candidates',candidates.length],['Pre-recall incidents',ds.pre_recall_public_incident_count||0],['Lead time',ds.lead_time_days!=null?ds.lead_time_days+' days':'Not established'],['Evidence items',ds.evidence_item_count||0]];
+  $('caseMetrics').innerHTML=metrics.map(x=>`<div class="metric"><div class="v">${esc(x[1])}</div><div class="l">${esc(x[0])}</div></div>`).join('');
+  $('brief').textContent=d.safety_brief||'No brief returned.';
+  const posture=ds.identity_status||'not_available';$('posture').textContent=posture.replaceAll('_',' ');$('posture').className='chip '+(posture==='working_match'?'ok':posture==='human_review_required'?'warn':posture==='no_confirmed_match'?'bad':'');
+  $('postureBody').innerHTML=posture==='working_match'?'<strong>A human working match has been recorded.</strong>':'<strong>Review remains open.</strong><div class="muted small" style="margin-top:5px">SafeSKU is not auto-confirming the marketplace SKU without sufficient identity evidence.</div>';
+  $('timeline').innerHTML=(d.timeline||[]).map(e=>`<div class="event ${e.pre_recall?'pre':''}"><div class="date">${esc(e.date||'Unknown')}</div><div><strong>${esc(e.label)}</strong><div class="source">${esc(e.source)}</div></div><div class="evidence" data-evidence="${esc(e.evidence_id)}">${esc(e.evidence_id)}</div></div>`).join('')||'<div class="empty">No timeline events.</div>';
+  $('traceMode').textContent=d.agent_warning||'';$('trace').innerHTML=(d.agent_trace||[]).map(t=>`<div class="trace-item"><div class="num">${esc(t.step||'')}</div><div><strong>${esc(t.tool)}</strong><div class="muted small">${esc(t.detail||'Tool completed')}</div></div><div><div class="status">${esc(t.status||'completed')}</div>${t.duration_ms?`<div class="duration">${esc(t.duration_ms)} ms</div>`:''}</div></div>`).join('')||'<div class="empty">No agent trace returned.</div>';
+  $('marketRefs').innerHTML=(d.marketplace_references||[]).map(r=>`<div class="dataset"><div class="row"><div><strong>Marketplace reference</strong><div class="meta">${esc(r.value)} · ${esc(r.source_record_id)}</div></div><a class="btn" href="${esc(r.url)}" target="_blank" rel="noreferrer">Open source</a></div></div>`).join('')||'<div class="empty">No explicit marketplace references in the incident narratives.</div>';
+  $('findings').innerHTML=(d.findings||[]).map(f=>`<div class="dataset"><div class="row"><strong>${esc(f.title)}</strong>${chip(f.severity||'informational')}</div><div class="meta">${esc(f.text)}</div><div class="evidence" style="margin-top:7px">${(f.evidence_ids||[]).join(' · ')}</div></div>`).join('');
+  renderCandidates();bindEvidence();
+}
+
+function renderCandidates(){
+  const filter=$('candidateFilter').value, rows=currentCase?.amazon_candidates||[];
+  const filtered=rows.filter(c=>filter==='all'||(filter==='reviewed'&&c.review_label)||(filter==='unreviewed'&&!c.review_label)||(filter==='strong'&&Number(c.evidence_score||0)>=.7));
+  $('candidates').innerHTML=filtered.length?filtered.map((c,i)=>{const label=c.review_label?chip(c.review_label,c.review_label==='MATCH'?'ok':c.review_label==='NON_MATCH'?'bad':'warn'):chip('UNREVIEWED');return `<div class="candidate"><div class="row"><div><div class="name">${esc(c.parent_asin||'Unknown ASIN')}</div><div class="meta">${esc(c.title||'No marketplace title')}</div></div><div style="text-align:right"><div class="score">${Number(c.evidence_score||0).toFixed(3)}</div>${label}</div></div><div class="meta" style="margin-top:8px">${(c.evidence||[]).map(esc).join(' · ')||'No explicit identity evidence returned.'}</div>${currentCase.marketplace_review_counts?.[c.parent_asin]?`<div class="meta">${currentCase.marketplace_review_counts[c.parent_asin]} review records indexed for this ASIN</div>`:''}<div class="candidate-actions"><button class="match" data-as="${esc(c.parent_asin)}" data-decision="MATCH">Confirm match</button><button class="reject" data-as="${esc(c.parent_asin)}" data-decision="NON_MATCH">Reject</button><button class="uncertain" data-as="${esc(c.parent_asin)}" data-decision="UNCERTAIN">Needs review</button><button data-reviews="${esc(c.parent_asin)}">View reviews</button></div></div>`}).join(''):'<div class="empty">No candidates for this filter.</div>';
+  document.querySelectorAll('.candidate-actions button[data-decision]').forEach(b=>b.addEventListener('click',()=>reviewCandidate(b.dataset.as,b.dataset.decision)));
+  document.querySelectorAll('[data-reviews]').forEach(b=>b.addEventListener('click',()=>showProductReviews(b.dataset.reviews)));
+}
+$('candidateFilter').addEventListener('change',renderCandidates);
+
+async function reviewCandidate(asin,decision){
+  const note=prompt(`Reviewer note for ${decision}`,'');if(note===null)return;
+  try{await api('/api/reviews',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({recall_number:activeRecall,parent_asin:asin,decision,note})});toast('Review decision saved.');await investigate(activeRecall)}catch(e){toast(e.message)}
+}
+
+async function showProductReviews(asin){
+  try{const d=await api('/api/workspace/products/'+encodeURIComponent(asin)+'/reviews');$('modalTitle').textContent=`Amazon review evidence · ${asin}`;$('modalBody').innerHTML=d.reviews?.length?d.reviews.map(r=>`<div class="dataset"><div class="row"><strong>${esc(r.review_title||'Review')}</strong><span class="chip">${esc(r.rating??'')}</span></div><div class="meta">${esc(r.review_date||'')} · verified ${esc(r.verified_purchase||'')}</div><div style="margin-top:8px;line-height:1.5;font-size:13px">${esc(r.review_text||'')}</div></div>`).join(''):'<div class="empty">No review-text records are indexed for this ASIN. Product metadata and safety evidence remain available.</div>';$('modal').classList.add('open')}catch(e){toast(e.message)}
+}
+
+function bindEvidence(){document.querySelectorAll('[data-evidence]').forEach(el=>el.onclick=async()=>{try{const d=await api('/api/evidence/'+encodeURIComponent(activeRecall)+'/'+encodeURIComponent(el.dataset.evidence));$('modalTitle').textContent=el.dataset.evidence;$('modalBody').innerHTML=`<div class="muted small" style="margin-bottom:9px">Structured record attached to this evidence item.</div><div class="modal-pre">${esc(JSON.stringify(d,null,2))}</div>`;$('modal').classList.add('open')}catch(e){toast(e.message)}})}
+$('modalClose').addEventListener('click',()=>$('modal').classList.remove('open'));$('modal').addEventListener('click',e=>{if(e.target===$('modal'))$('modal').classList.remove('open')});
+$('exportJson').addEventListener('click',()=>window.open(`/api/investigations/${encodeURIComponent(activeRecall)}/export?format=json`,'_blank'));
+$('exportCsv').addEventListener('click',()=>window.open(`/api/investigations/${encodeURIComponent(activeRecall)}/export?format=csv`,'_blank'));
+
+async function refreshQueue(){
+  try{const d=await api('/api/workspace/review-queue');const rows=d.items||[];$('queue').innerHTML=rows.length?rows.map(r=>`<div class="queue-row"><div class="row"><div><strong>CPSC #${esc(r.recall_number)}</strong><div class="meta">${esc(r.parent_asin)} · ${esc(r.title||'')}</div></div><div>${r.decision?chip(r.decision):chip('OPEN','warn')}</div></div><div class="meta">Title similarity ${Number(r.product_name_sequence_similarity||0).toFixed(3)} · token Jaccard ${Number(r.product_token_jaccard||0).toFixed(3)}</div><div class="actions" style="margin-top:8px"><button class="btn primary" data-qrecall="${esc(r.recall_number)}">Open investigation</button></div></div>`).join(''):'<div class="empty">The review queue is clear for the currently indexed linkage artifacts.</div>';document.querySelectorAll('[data-qrecall]').forEach(b=>b.addEventListener('click',()=>investigate(b.dataset.qrecall)))}catch(e){toast(e.message)}
+}
+$('refreshQueue').addEventListener('click',refreshQueue);
+
+async function refreshAll(){await refreshOverview();await refreshDatasets();}
+(async()=>{try{await loadCloudConfig().then(refreshAll);await maybeAutoAnalyze();}catch(e){toast(e.message)}})();
+</script>
+</body>
+</html>

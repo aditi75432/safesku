@@ -1,0 +1,354 @@
+{
+  "amazon_products": 312028,
+  "token_count": 145036,
+  "policy": "two_or_more_shared_product_name_tokens AND at_least_one_shared_token has Amazon document frequency <= threshold",
+  "thresholds": [
+    {
+      "max_token_document_frequency": 50,
+      "recalls_with_candidates": 343,
+      "candidate_pairs": 2129,
+      "candidate_count_distribution": {
+        "min": 0,
+        "median": 0,
+        "p90": 5,
+        "max": 48
+      },
+      "products_with_500_or_more_candidates": []
+    },
+    {
+      "max_token_document_frequency": 100,
+      "recalls_with_candidates": 482,
+      "candidate_pairs": 5068,
+      "candidate_count_distribution": {
+        "min": 0,
+        "median": 0,
+        "p90": 16,
+        "max": 77
+      },
+      "products_with_500_or_more_candidates": []
+    },
+    {
+      "max_token_document_frequency": 250,
+      "recalls_with_candidates": 615,
+      "candidate_pairs": 14433,
+      "candidate_count_distribution": {
+        "min": 0,
+        "median": 2,
+        "p90": 45,
+        "max": 204
+      },
+      "products_with_500_or_more_candidates": []
+    },
+    {
+      "max_token_document_frequency": 500,
+      "recalls_with_candidates": 691,
+      "candidate_pairs": 30325,
+      "candidate_count_distribution": {
+        "min": 0,
+        "median": 4,
+        "p90": 94,
+        "max": 935
+      },
+      "products_with_500_or_more_candidates": [
+        {
+          "recall": "20061",
+          "product_index": 0,
+          "product_name": "Beautyrest Beginnings Incline Sleeper with Adjustable Feeding Position for Newborns; Disney Baby Minnie Mouse Incline Sleeper with Adjustable Feeding Position for Newborns; Delta Children Deluxe 3-in-1 Activity Rocker, Feeder and Sleeper; Simmons Kids Beautyrest Deluxe 3-in-1 Activity Rocker, Feeder, and Sleeper; 3-in-1 Activity Rocker, Feeder and Incline Sleeper and others.",
+          "candidate_count": 935
+        }
+      ]
+    },
+    {
+      "max_token_document_frequency": 1000,
+      "recalls_with_candidates": 757,
+      "candidate_pairs": 70939,
+      "candidate_count_distribution": {
+        "min": 0,
+        "median": 10,
+        "p90": 194,
+        "max": 2722
+      },
+      "products_with_500_or_more_candidates": [
+        {
+          "recall": "20061",
+          "product_index": 0,
+          "product_name": "Beautyrest Beginnings Incline Sleeper with Adjustable Feeding Position for Newborns; Disney Baby Minnie Mouse Incline Sleeper with Adjustable Feeding Position for Newborns; Delta Children Deluxe 3-in-1 Activity Rocker, Feeder and Sleeper; Simmons Kids Beautyrest Deluxe 3-in-1 Activity Rocker, Feeder, and Sleeper; 3-in-1 Activity Rocker, Feeder and Incline Sleeper and others.",
+          "candidate_count": 2722
+        },
+        {
+          "recall": "21033",
+          "product_index": 0,
+          "product_name": "Baby Spoons and Forks, Feeding Spoons and Placemat Feeding sets 4PCs",
+          "candidate_count": 1856
+        },
+        {
+          "recall": "21164",
+          "product_index": 0,
+          "product_name": "Disney Baby Winnie the Pooh Rattle Sets",
+          "candidate_count": 1346
+        },
+        {
+          "recall": "23127",
+          "product_index": 0,
+          "product_name": "My First Mickey Mouse, Minnie Mouse, Buzz Lightyear, and Stitch Figurines",
+          "candidate_count": 1123
+        },
+        {
+          "recall": "21111",
+          "product_index": 0,
+          "product_name": "Cat & Jack Baby Heart Ears Rompers",
+          "candidate_count": 1086
+        },
+        {
+          "recall": "23022",
+          "product_index": 0,
+          "product_name": "Pine-Sol\u00ae Scented Multi-Surface Cleaners in Lavender Clean\u00ae, Sparkling Wave\u00ae, and Lemon Fresh scents, CloroxPro\u00ae Pine-Sol\u00ae All Purpose Cleaners, in Lavender Clean\u00ae, Sparkling Wave\u00ae, Lemon Fresh, and Orange Energy\u00ae scents, and Clorox\u00ae Professional\u2122 Pine-Sol\u00ae Lemon Fresh Cleaners. Original Pine-Sol\u00ae (Pine scent) is not included in this recall.",
+          "candidate_count": 1069
+        },
+        {
+          "recall": "23742",
+          "product_index": 0,
+          "product_name": "Basket with Balls toys sold with Monti Kids Tummy-Time, 4-6M Play and Early Gross Motor subscription boxes",
+          "candidate_count": 1038
+        },
+        {
+          "recall": "22709",
+          "product_index": 0,
+          "product_name": "Baby Long Sleeve Wiggle Sets",
+          "candidate_count": 992
+        },
+        {
+          "recall": "22117",
+          "product_index": 0,
+          "product_name": "GE-brand Free-Standing French Door Refrigerators in Fingerprint Resistant Stainless Steel",
+          "candidate_count": 986
+        },
+        {
+          "recall": "21076",
+          "product_index": 0,
+          "product_name": "Muscle Rack Heavy Duty Steel Shelving Units",
+          "candidate_count": 960
+        }
+      ]
+    },
+    {
+      "max_token_document_frequency": 2500,
+      "recalls_with_candidates": 790,
+      "candidate_pairs": 142972,
+      "candidate_count_distribution": {
+        "min": 0,
+        "median": 17,
+        "p90": 372,
+        "max": 5982
+      },
+      "products_with_500_or_more_candidates": [
+        {
+          "recall": "20061",
+          "product_index": 0,
+          "product_name": "Beautyrest Beginnings Incline Sleeper with Adjustable Feeding Position for Newborns; Disney Baby Minnie Mouse Incline Sleeper with Adjustable Feeding Position for Newborns; Delta Children Deluxe 3-in-1 Activity Rocker, Feeder and Sleeper; Simmons Kids Beautyrest Deluxe 3-in-1 Activity Rocker, Feeder, and Sleeper; 3-in-1 Activity Rocker, Feeder and Incline Sleeper and others.",
+          "candidate_count": 5982
+        },
+        {
+          "recall": "22133",
+          "product_index": 0,
+          "product_name": "BIBS Baby Bottles",
+          "candidate_count": 2728
+        },
+        {
+          "recall": "23711",
+          "product_index": 0,
+          "product_name": "Green Sprouts Stainless Steel Straw Bottles, Sippy Cups and Sip & Straw Cups",
+          "candidate_count": 2571
+        },
+        {
+          "recall": "22130",
+          "product_index": 0,
+          "product_name": "Infant French terry jumpsuits, rompers, snap suits, baby dresses and bibs",
+          "candidate_count": 2493
+        },
+        {
+          "recall": "23250",
+          "product_index": 0,
+          "product_name": "Philips Avent Digital Video Baby Monitors",
+          "candidate_count": 2168
+        },
+        {
+          "recall": "23022",
+          "product_index": 0,
+          "product_name": "Pine-Sol\u00ae Scented Multi-Surface Cleaners in Lavender Clean\u00ae, Sparkling Wave\u00ae, and Lemon Fresh scents, CloroxPro\u00ae Pine-Sol\u00ae All Purpose Cleaners, in Lavender Clean\u00ae, Sparkling Wave\u00ae, Lemon Fresh, and Orange Energy\u00ae scents, and Clorox\u00ae Professional\u2122 Pine-Sol\u00ae Lemon Fresh Cleaners. Original Pine-Sol\u00ae (Pine scent) is not included in this recall.",
+          "candidate_count": 2002
+        },
+        {
+          "recall": "22117",
+          "product_index": 0,
+          "product_name": "GE-brand Free-Standing French Door Refrigerators in Fingerprint Resistant Stainless Steel",
+          "candidate_count": 1933
+        },
+        {
+          "recall": "22083",
+          "product_index": 0,
+          "product_name": "Valco Baby Snap Duo Trend Strollers",
+          "candidate_count": 1888
+        },
+        {
+          "recall": "22709",
+          "product_index": 0,
+          "product_name": "Baby Long Sleeve Wiggle Sets",
+          "candidate_count": 1875
+        },
+        {
+          "recall": "21033",
+          "product_index": 0,
+          "product_name": "Baby Spoons and Forks, Feeding Spoons and Placemat Feeding sets 4PCs",
+          "candidate_count": 1856
+        }
+      ]
+    },
+    {
+      "max_token_document_frequency": 5000,
+      "recalls_with_candidates": 793,
+      "candidate_pairs": 208553,
+      "candidate_count_distribution": {
+        "min": 0,
+        "median": 19,
+        "p90": 582,
+        "max": 8975
+      },
+      "products_with_500_or_more_candidates": [
+        {
+          "recall": "20061",
+          "product_index": 0,
+          "product_name": "Beautyrest Beginnings Incline Sleeper with Adjustable Feeding Position for Newborns; Disney Baby Minnie Mouse Incline Sleeper with Adjustable Feeding Position for Newborns; Delta Children Deluxe 3-in-1 Activity Rocker, Feeder and Sleeper; Simmons Kids Beautyrest Deluxe 3-in-1 Activity Rocker, Feeder, and Sleeper; 3-in-1 Activity Rocker, Feeder and Incline Sleeper and others.",
+          "candidate_count": 8975
+        },
+        {
+          "recall": "23717",
+          "product_index": 0,
+          "product_name": "Thornhill Dark Brown and Natural Baby Cribs",
+          "candidate_count": 4910
+        },
+        {
+          "recall": "23229",
+          "product_index": 0,
+          "product_name": "Robo Alive Junior Baby Shark Sing & Swim Bath Toys (full-size) and Robo Alive Junior Mini Baby Shark Swimming Bath Toys (mini-size)",
+          "candidate_count": 4089
+        },
+        {
+          "recall": "22765",
+          "product_index": 0,
+          "product_name": "NUK First Choice 240 mL Glass Baby Bottles",
+          "candidate_count": 4026
+        },
+        {
+          "recall": "22151",
+          "product_index": 0,
+          "product_name": "Hisense French Door Refrigerators with Ice Maker",
+          "candidate_count": 3953
+        },
+        {
+          "recall": "21033",
+          "product_index": 0,
+          "product_name": "Baby Spoons and Forks, Feeding Spoons and Placemat Feeding sets 4PCs",
+          "candidate_count": 3650
+        },
+        {
+          "recall": "23269",
+          "product_index": 0,
+          "product_name": "Frigidaire Stainless-Steel 30-inch 4 Burner and 36-inch 5 Burner Gas Cooktops",
+          "candidate_count": 3550
+        },
+        {
+          "recall": "22143",
+          "product_index": 0,
+          "product_name": "Frigidaire and Electrolux Side-by-Side, Top Freezer and Multi-door refrigerators",
+          "candidate_count": 3254
+        },
+        {
+          "recall": "23018",
+          "product_index": 0,
+          "product_name": "Mittal International Baby Blankets",
+          "candidate_count": 2803
+        },
+        {
+          "recall": "22133",
+          "product_index": 0,
+          "product_name": "BIBS Baby Bottles",
+          "candidate_count": 2728
+        }
+      ]
+    },
+    {
+      "max_token_document_frequency": 10000,
+      "recalls_with_candidates": 793,
+      "candidate_pairs": 300660,
+      "candidate_count_distribution": {
+        "min": 0,
+        "median": 19,
+        "p90": 621,
+        "max": 17352
+      },
+      "products_with_500_or_more_candidates": [
+        {
+          "recall": "20061",
+          "product_index": 0,
+          "product_name": "Beautyrest Beginnings Incline Sleeper with Adjustable Feeding Position for Newborns; Disney Baby Minnie Mouse Incline Sleeper with Adjustable Feeding Position for Newborns; Delta Children Deluxe 3-in-1 Activity Rocker, Feeder and Sleeper; Simmons Kids Beautyrest Deluxe 3-in-1 Activity Rocker, Feeder, and Sleeper; 3-in-1 Activity Rocker, Feeder and Incline Sleeper and others.",
+          "candidate_count": 17352
+        },
+        {
+          "recall": "22117",
+          "product_index": 0,
+          "product_name": "GE-brand Free-Standing French Door Refrigerators in Fingerprint Resistant Stainless Steel",
+          "candidate_count": 10650
+        },
+        {
+          "recall": "23269",
+          "product_index": 0,
+          "product_name": "Frigidaire Stainless-Steel 30-inch 4 Burner and 36-inch 5 Burner Gas Cooktops",
+          "candidate_count": 10410
+        },
+        {
+          "recall": "23711",
+          "product_index": 0,
+          "product_name": "Green Sprouts Stainless Steel Straw Bottles, Sippy Cups and Sip & Straw Cups",
+          "candidate_count": 10247
+        },
+        {
+          "recall": "22130",
+          "product_index": 0,
+          "product_name": "Infant French terry jumpsuits, rompers, snap suits, baby dresses and bibs",
+          "candidate_count": 9377
+        },
+        {
+          "recall": "23229",
+          "product_index": 0,
+          "product_name": "Robo Alive Junior Baby Shark Sing & Swim Bath Toys (full-size) and Robo Alive Junior Mini Baby Shark Swimming Bath Toys (mini-size)",
+          "candidate_count": 8720
+        },
+        {
+          "recall": "23774",
+          "product_index": 0,
+          "product_name": "CUPKIN Double-Walled Stainless Steel Children's Cups",
+          "candidate_count": 8516
+        },
+        {
+          "recall": "22170",
+          "product_index": 0,
+          "product_name": "Baby Boy Dino Rompers and Baby Boy Camo Rompers Two Pack",
+          "candidate_count": 6657
+        },
+        {
+          "recall": "23742",
+          "product_index": 0,
+          "product_name": "Basket with Balls toys sold with Monti Kids Tummy-Time, 4-6M Play and Early Gross Motor subscription boxes",
+          "candidate_count": 6373
+        },
+        {
+          "recall": "23257",
+          "product_index": 0,
+          "product_name": "Baby and Toddler Boy Basic Stretch Straight Leg Jeans",
+          "candidate_count": 5997
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "products_with_candidates": 435,
+  "candidate_rows": 36798,
+  "top_candidate_products": [
+    {
+      "recall": "23737",
+      "product_index": 0,
+      "product_name": "Baby Crib Bumpers",
+      "candidate_count": 6354,
+      "shared_token_histogram": {
+        "2": 6345,
+        "3": 9
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "23018",
+      "product_index": 0,
+      "product_name": "Mittal International Baby Blankets",
+      "candidate_count": 2803,
+      "shared_token_histogram": {
+        "2": 2803
+      },
+      "max_shared_tokens": 2
+    },
+    {
+      "recall": "22133",
+      "product_index": 0,
+      "product_name": "BIBS Baby Bottles",
+      "candidate_count": 2728,
+      "shared_token_histogram": {
+        "2": 2701,
+        "3": 27
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "23724",
+      "product_index": 0,
+      "product_name": "Baby Sleep Sacks",
+      "candidate_count": 1819,
+      "shared_token_histogram": {
+        "2": 1738,
+        "3": 81
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "21721",
+      "product_index": 0,
+      "product_name": "Strap Safety Brackets",
+      "candidate_count": 1105,
+      "shared_token_histogram": {
+        "2": 1104,
+        "3": 1
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "21705",
+      "product_index": 0,
+      "product_name": "Heavy Duty Oven Liners",
+      "candidate_count": 945,
+      "shared_token_histogram": {
+        "2": 891,
+        "3": 47,
+        "4": 7
+      },
+      "max_shared_tokens": 4
+    },
+    {
+      "recall": "23170",
+      "product_index": 0,
+      "product_name": "2-in-1 Outdoor Kids Swings",
+      "candidate_count": 744,
+      "shared_token_histogram": {
+        "2": 742,
+        "3": 2
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "20753",
+      "product_index": 0,
+      "product_name": "Baby Strollers",
+      "candidate_count": 610,
+      "shared_token_histogram": {
+        "2": 610
+      },
+      "max_shared_tokens": 2
+    },
+    {
+      "recall": "20755",
+      "product_index": 0,
+      "product_name": "Belecoo 535-S Baby Strollers",
+      "candidate_count": 610,
+      "shared_token_histogram": {
+        "2": 610
+      },
+      "max_shared_tokens": 2
+    },
+    {
+      "recall": "21775",
+      "product_index": 0,
+      "product_name": "Infant Bath Seats",
+      "candidate_count": 584,
+      "shared_token_histogram": {
+        "2": 580,
+        "3": 4
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "22713",
+      "product_index": 0,
+      "product_name": "Infant Bath Seats",
+      "candidate_count": 584,
+      "shared_token_histogram": {
+        "2": 580,
+        "3": 4
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "22768",
+      "product_index": 0,
+      "product_name": "Infant Bath Seats",
+      "candidate_count": 584,
+      "shared_token_histogram": {
+        "2": 580,
+        "3": 4
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "23250",
+      "product_index": 0,
+      "product_name": "Philips Avent Digital Video Baby Monitors",
+      "candidate_count": 568,
+      "shared_token_histogram": {
+        "2": 400,
+        "3": 161,
+        "4": 6,
+        "5": 1
+      },
+      "max_shared_tokens": 5
+    },
+    {
+      "recall": "22748",
+      "product_index": 0,
+      "product_name": "Coffee cups",
+      "candidate_count": 551,
+      "shared_token_histogram": {
+        "2": 551
+      },
+      "max_shared_tokens": 2
+    },
+    {
+      "recall": "23012",
+      "product_index": 0,
+      "product_name": "Magic Chef Air Fryers",
+      "candidate_count": 531,
+      "shared_token_histogram": {
+        "2": 457,
+        "3": 74
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "23080",
+      "product_index": 0,
+      "product_name": "Samsung Top-Load Washing Machines",
+      "candidate_count": 518,
+      "shared_token_histogram": {
+        "2": 260,
+        "3": 249,
+        "4": 9
+      },
+      "max_shared_tokens": 4
+    },
+    {
+      "recall": "23213",
+      "product_index": 0,
+      "product_name": "PowerXL Self-Cleaning Juicers",
+      "candidate_count": 507,
+      "shared_token_histogram": {
+        "2": 507
+      },
+      "max_shared_tokens": 2
+    },
+    {
+      "recall": "23115",
+      "product_index": 0,
+      "product_name": "Fabuloso Multi-Purpose Cleaners",
+      "candidate_count": 480,
+      "shared_token_histogram": {
+        "2": 480
+      },
+      "max_shared_tokens": 2
+    },
+    {
+      "recall": "23747",
+      "product_index": 0,
+      "product_name": "Lelinta Multi-Purpose Kids Helmets",
+      "candidate_count": 480,
+      "shared_token_histogram": {
+        "2": 441,
+        "3": 39
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "23230",
+      "product_index": 0,
+      "product_name": "Hurtle Multi-Purpose Helmet",
+      "candidate_count": 480,
+      "shared_token_histogram": {
+        "2": 480
+      },
+      "max_shared_tokens": 2
+    },
+    {
+      "recall": "23718",
+      "product_index": 0,
+      "product_name": "Waterproof Foam Mattresses",
+      "candidate_count": 456,
+      "shared_token_histogram": {
+        "2": 445,
+        "3": 11
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "22759",
+      "product_index": 0,
+      "product_name": "Monti Kids Toy Box with Bins",
+      "candidate_count": 406,
+      "shared_token_histogram": {
+        "2": 140,
+        "3": 124,
+        "4": 142
+      },
+      "max_shared_tokens": 4
+    },
+    {
+      "recall": "23081",
+      "product_index": 0,
+      "product_name": "Home Bed Rails",
+      "candidate_count": 391,
+      "shared_token_histogram": {
+        "2": 381,
+        "3": 10
+      },
+      "max_shared_tokens": 3
+    },
+    {
+      "recall": "22710",
+      "product_index": 0,
+      "product_name": "Baby Ruffle Rompers",
+      "candidate_count": 365,
+      "shared_token_histogram": {
+        "2": 365
+      },
+      "max_shared_tokens": 2
+    },
+    {
+      "recall": "21164",
+      "product_index": 0,
+      "product_name": "Disney Baby Winnie the Pooh Rattle Sets",
+      "candidate_count": 358,
+      "shared_token_histogram": {
+        "2": 104,
+        "3": 146,
+        "4": 108
+      },
+      "max_shared_tokens": 4
+    }
+  ]
+}

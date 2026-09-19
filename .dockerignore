@@ -1,0 +1,53 @@
+@'
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Git / editor
+.git/
+.gitignore
+.vscode/
+.idea/
+
+# SAM build output
+.aws-sam/
+
+# Large research datasets
+data/amazon/
+data/benchmark/
+data/processed/
+data/raw/
+data/runtime/
+
+# Local databases / generated state
+*.db
+*.sqlite
+*.sqlite3
+data/workspace/
+data/indexes/
+
+# Generated bundles
+data/bundles/
+
+# Logs / temporary files
+*.log
+*.tmp
+*.temp
+
+# Keep only the small demo fixtures under data/demo/
+!data/demo/
+!data/demo/**
+'@ | Set-Content -Encoding utf8 .\.dockerignore
+
+
+
+Add-Content .dockerignore @'
+
+# Local runtime state and backups must never enter Docker build context
+data/runtime/
+data/runtime*/
+'@
+
+$env:SAFE_SKU_OPENSEARCH_URL="http://127.0.0.1:9200"

@@ -1,0 +1,18 @@
+{
+  "index_version": 2,
+  "policy": {
+    "type": "exact_upc_or_two_shared_tokens_with_one_category_rare_token",
+    "max_token_document_frequency": 250,
+    "min_shared_tokens": 2,
+    "rarity_scope": "amazon_source_category"
+  },
+  "cpsc_records": 1005,
+  "cpsc_product_mentions": 1005,
+  "amazon_parent_asins_indexed": 442167,
+  "product_mentions_with_candidates": 930,
+  "candidate_pairs": 84037,
+  "exact_upc_candidates": 4,
+  "lexical_candidates": 84034,
+  "candidate_pairs_written": 84037,
+  "complete_candidate_set": true
+}

@@ -1,0 +1,12 @@
+{
+  "recalls_with_candidates": 930,
+  "candidate_pairs": 84037,
+  "exact_upc_pairs": 4,
+  "exact_upc_recalls": 2,
+  "candidate_count_distribution": {
+    "min": 1,
+    "median": 48,
+    "p90": 235,
+    "max": 1333
+  }
+}

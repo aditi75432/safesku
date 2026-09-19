@@ -1,0 +1,89 @@
+{
+  "cpsc_unique_normalized_upcs": 330,
+  "amazon_unique_normalized_upcs": 4991,
+  "normalized_upc_intersection": 0,
+  "intersection_sample": [],
+  "largest_candidate_recalls": [
+    {
+      "recall": "23737",
+      "candidate_pairs": 6354
+    },
+    {
+      "recall": "23018",
+      "candidate_pairs": 2803
+    },
+    {
+      "recall": "22133",
+      "candidate_pairs": 2728
+    },
+    {
+      "recall": "23724",
+      "candidate_pairs": 1819
+    },
+    {
+      "recall": "21721",
+      "candidate_pairs": 1105
+    },
+    {
+      "recall": "21705",
+      "candidate_pairs": 945
+    },
+    {
+      "recall": "23170",
+      "candidate_pairs": 744
+    },
+    {
+      "recall": "20753",
+      "candidate_pairs": 610
+    },
+    {
+      "recall": "20755",
+      "candidate_pairs": 610
+    },
+    {
+      "recall": "21775",
+      "candidate_pairs": 584
+    },
+    {
+      "recall": "22713",
+      "candidate_pairs": 584
+    },
+    {
+      "recall": "22768",
+      "candidate_pairs": 584
+    },
+    {
+      "recall": "23250",
+      "candidate_pairs": 568
+    },
+    {
+      "recall": "22748",
+      "candidate_pairs": 551
+    },
+    {
+      "recall": "23012",
+      "candidate_pairs": 531
+    },
+    {
+      "recall": "23080",
+      "candidate_pairs": 518
+    },
+    {
+      "recall": "23213",
+      "candidate_pairs": 507
+    },
+    {
+      "recall": "23115",
+      "candidate_pairs": 480
+    },
+    {
+      "recall": "23747",
+      "candidate_pairs": 480
+    },
+    {
+      "recall": "23230",
+      "candidate_pairs": 480
+    }
+  ],
+  "candidate_rows_seen": 36798
+}

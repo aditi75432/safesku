@@ -1,0 +1,28 @@
+{
+  "input_candidate_rows": 84037,
+  "selected_rows": 200,
+  "seed": 20260919,
+  "requested_sample_size": 200,
+  "exact_upc_rows": 4,
+  "unique_recalls": 140,
+  "similarity_distribution": {
+    "low": 90,
+    "medium": 80,
+    "high": 30
+  },
+  "model_distribution": {
+    "with_model": 51,
+    "without_model": 149
+  },
+  "bucket_distribution": {
+    "small_bucket": 36,
+    "medium_bucket": 67,
+    "large_bucket": 97
+  },
+  "policy": "Retain all exact-UPC candidates, then stratify remaining rows across lexical similarity, model availability, brand relation, and candidate bucket size. This is an identity-review sample, not a safety classifier.",
+  "allowed_labels": [
+    "MATCH",
+    "NON_MATCH",
+    "UNCERTAIN"
+  ]
+}

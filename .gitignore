@@ -55,3 +55,27 @@ data/amazon/normalized/
 data/benchmark/amazon_linkage/*.jsonl
 data/benchmark/amazon_linkage/*.pkl
 data/benchmark/amazon_linkage/modeling/
+
+docs/
+# Local build/runtime state
+.aws-sam/
+data/runtime/
+data/runtime-backup-*/
+
+# Large local source datasets and generated bundles
+data/amazon/
+data/bundles/
+
+# Local benchmark working artifacts
+data/benchmark/amazon_linkage/modeling/
+
+# Python/local tooling
+.venv/
+__pycache__/
+*.pyc
+
+# Local IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,262 @@
+{
+  "bundle_version": "0.2",
+  "description": "SafeSKU demo bundle generated from the project's real benchmark artifacts.",
+  "cases": [
+    {
+      "recall": {
+        "recall_number": "22754",
+        "source_record_id": "9346",
+        "recall_date": "2022-06-30",
+        "product_name": "Lidocaine 4% Topical Anesthetic Cream",
+        "title": "Mohnark Pharmaceuticals Recalls Lidocaine Topical Anesthetic Cream Due to Failure to Meet Child-Resistant Packaging Requirement; Risk of Poisoning (Recall Alert)",
+        "description": "The recall involves Mohnark Pharmaceuticals Lidocaine 4% Topical Anesthetic Cream. The product was sold in a white tube with a flip-top closure. Mohnark Pharmaceuticals is printed under the blue and green logo on the right side of the product tube. The lot code is located at the bottom of the product tube. The affected lot codes are 01202201, 210201, 210301, 210503, 210505, 210601, 211002 and 210401. The UPC 860002324906 is located on bottom side panel of the packaging.",
+        "hazards": [
+          {
+            "name": "The product contains lidocaine which must be in child resistant packaging as required by the Poison Prevention Packaging Act (PPPA). The packaging is not child resistant, posing a risk of poisoning to young children if they ingest the anesthetic cream.",
+            "hazard_type": null,
+            "hazard_type_id": null
+          }
+        ],
+        "url": "https://www.cpsc.gov/Recalls/2022/Mohnark-Pharmaceuticals-Recalls-Lidocaine-Topical-Anesthetic-Cream-Due-to-Failure-to-Meet-Child-Resistant-Packaging-Requirement-Risk-of-Poisoning-Recall-Alert"
+      },
+      "amazon_candidates": [
+        {
+          "review_label": "UNCERTAIN",
+          "reviewer_notes": "Lido Cream 4% matches the generic drug/product description, but exact manufacturer and recalled SKU are absent from the review row.",
+          "parent_asin": "B003RPQHFW",
+          "title": "Lido Cream 4 Topical Anesthetic Cream Lidocaine 4%, 2 Ounce",
+          "brand": "Lido Cream",
+          "manufacturer": "Lido Cream",
+          "model": "",
+          "upc": "",
+          "category": "Health & Personal Care",
+          "exact_upc": 0,
+          "shared_product_token_count": 4,
+          "product_token_jaccard": 0.666667,
+          "product_name_sequence_similarity": 0.0,
+          "brand_relation": "brand_not_in_cpsc_name",
+          "evidence_score": 0.437,
+          "evidence": [
+            "4 shared product-name tokens"
+          ]
+        },
+        {
+          "review_label": "UNCERTAIN",
+          "reviewer_notes": "Lidocaine product family overlaps, but this Amazon listing is 5% rather than the recalled 4% formulation.",
+          "parent_asin": "B004LV215Q",
+          "title": "Lido Cream 5 Topical Anesthetic Cream Lidocaine 5%, 2 Ounce",
+          "brand": "",
+          "manufacturer": "Lido Cream",
+          "model": "",
+          "upc": "",
+          "category": "Health & Personal Care",
+          "exact_upc": 0,
+          "shared_product_token_count": 4,
+          "product_token_jaccard": 0.666667,
+          "product_name_sequence_similarity": 0.0,
+          "brand_relation": "brand_missing",
+          "evidence_score": 0.437,
+          "evidence": [
+            "4 shared product-name tokens"
+          ]
+        },
+        {
+          "review_label": "UNCERTAIN",
+          "reviewer_notes": "Lidocaine product family overlaps, but this Amazon listing is 5% rather than the recalled 4% formulation.",
+          "parent_asin": "B004LVGEHW",
+          "title": "Lido Cream 5 Topical Anesthetic Cream Lidocaine 5%, 1 Ounce",
+          "brand": "Lido Cream",
+          "manufacturer": "Lido Cream",
+          "model": "",
+          "upc": "",
+          "category": "Health & Personal Care",
+          "exact_upc": 0,
+          "shared_product_token_count": 4,
+          "product_token_jaccard": 0.666667,
+          "product_name_sequence_similarity": 0.0,
+          "brand_relation": "brand_not_in_cpsc_name",
+          "evidence_score": 0.437,
+          "evidence": [
+            "4 shared product-name tokens"
+          ]
+        },
+        {
+          "review_label": "NON_MATCH",
+          "reviewer_notes": "Amazon listing is a different product, component, accessory, variant, or entity from the recalled 'Lidocaine 4% Topical Anesthetic Cream': 'Lido 5% Caine Spray Max Strength Pain Relief. Topical Numbing Anesthetic 40ml Clear 1.33 Fl Oz'.",
+          "parent_asin": "B08BZVGXPB",
+          "title": "Lido 5% Caine Spray Max Strength Pain Relief. Topical Numbing Anesthetic 40ml Clear 1.33 Fl Oz",
+          "brand": "Lido",
+          "manufacturer": "AmazonUs/MF7CB",
+          "model": "",
+          "upc": "",
+          "category": "Health & Personal Care",
+          "exact_upc": 0,
+          "shared_product_token_count": 2,
+          "product_token_jaccard": 0.117647,
+          "product_name_sequence_similarity": 0.0,
+          "brand_relation": "brand_in_cpsc_name",
+          "evidence_score": 0.251,
+          "evidence": [
+            "Brand aligns with recall product",
+            "2 shared product-name tokens"
+          ]
+        }
+      ],
+      "incidents": [
+        {
+          "source_record_id": "20211025-25E64-2147359061",
+          "incident_date": "2021-10-18",
+          "publication_date": "2021-11-10",
+          "brand": "Mohnark",
+          "model": "",
+          "upc": "860002324906",
+          "product_description": "4% Lidocaine Cream in a tube with a flip top cap.  Expiration date:  9/2023",
+          "description": "Monhark 4% Lidocaine Cream does not have the required child safety cap.  The cap is just a regular flip that is very easy to open.  I bought it on Amazon.  Here is the link:\r\n\r\nhttps://www.amazon.com/Lidocaine-4-Topical-Anesthetic-Cream/dp/B08FTL2RMH",
+          "manufacturer": "Mohnark Pharmaceuticals Inc.",
+          "retailer": "Amazon.com"
+        }
+      ]
+    },
+    {
+      "recall": {
+        "recall_number": "20111",
+        "source_record_id": "8794",
+        "recall_date": "2020-04-16",
+        "product_name": "Wyndmere Birch Sweet Essential Oil and Aches and Pains Synergistic Blend",
+        "title": "Wyndmere Naturals Recalls Birch Sweet Essential Oil and Aches & Pains Synergistic Essential Oil Blend Due to Failure to Meet Child Resistant Packaging Requirement; Risk of Poisoning",
+        "description": "This recall involves Birch Sweet Essential Oil in a 10 mL cobalt blue glass bottle with a black cap and a yellow label. \"Wyndmere,\" \"Birch Sweet,\" \"Pure Essential Oil,\" and UPC code 602444000907 are printed on the label. The batch number 12717-65 is printed on the bottom of the bottle in yellow ink. The Aches & Pains Synergistic Blend was sold in a 10 mL cobalt blue glass bottle with a black cap and blue label. \"Wyndmere,\" \"Aches & Pains,\" \"Synergistic Blend,\" and UPC code 602444010609 are printed on the label. Batch number 112019-65 is printed on the bottom of the bottle in yellow ink.",
+        "hazards": [
+          {
+            "name": "The product contains the substance methyl salicylate which must be in child resistant packaging as required by the Poison Prevention Packaging Act (PPPA). The packaging of the product is not child resistant, posing a risk of poisoning if the contents are swallowed by young children.",
+            "hazard_type": null,
+            "hazard_type_id": null
+          }
+        ],
+        "url": "https://www.cpsc.gov/Recalls/2020/Wyndmere-Naturals-Recalls-Birch-Sweet-Essential-Oil-and-Aches-and-Pains-Synergistic-Essential-Oil-Blend-Due-to-Failure-to-Meet-Child-Resistant-Packaging-Requirement-Risk-of-Poisoning"
+      },
+      "amazon_candidates": [
+        {
+          "review_label": "MATCH",
+          "reviewer_notes": "Exact UPC agreement is direct identifier evidence.",
+          "parent_asin": "B004XR0DBC",
+          "title": "Wyndmere Naturals - Synergistic Blend Aches & Pains - 0.33 oz.",
+          "brand": "",
+          "manufacturer": "WYNDMERE NATURALS",
+          "model": "",
+          "upc": "602444010609.0",
+          "category": "All Beauty",
+          "exact_upc": 1,
+          "shared_product_token_count": 5,
+          "product_token_jaccard": 0.416667,
+          "product_name_sequence_similarity": 0.0,
+          "brand_relation": "brand_missing",
+          "evidence_score": 1.0,
+          "evidence": [
+            "Exact UPC agreement",
+            "5 shared product-name tokens"
+          ]
+        }
+      ],
+      "incidents": [
+        {
+          "source_record_id": "20200705-B2E40-2147371293",
+          "incident_date": "2020-07-02",
+          "publication_date": "2020-08-07",
+          "brand": "Edens Garden Birch Essential OIl",
+          "model": "",
+          "upc": "",
+          "product_description": "Edens Garden Birch Essential Oil, 100% Pure Therapeutic Grade (Highest Quality Aromatherapy Oils- Massage & Pain), 10 ml",
+          "description": "email from Amazon\r\n\r\nWe have learned of a potential safety issue that may impact your Amazon purchase(s) below:\r\nEdens Garden Birch Essential Oil, 100% Pure Therapeutic Grade (Highest Quality Aromatherapy Oils- Massage & Pain), 10 ml\r\nUPC/SKU: B0046VXMQI\r\n03/04/2020 - 114-6819482-1480246 - Edens Garden Birch Essential Oil, 100% Pure Therapeutic Grade (Highest Quality Aromatherapy Oils- Massage & Pain), 10 ml\r\n\r\nThe cap is not childproof. This said, there has not been an incident involving a child or person. Just reporting that I purchased this product.",
+          "manufacturer": "EDEN'S GARDEN",
+          "retailer": "Amazon"
+        }
+      ]
+    },
+    {
+      "recall": {
+        "recall_number": "22083",
+        "source_record_id": "9238",
+        "recall_date": "2022-02-16",
+        "product_name": "Valco Baby Snap Duo Trend Strollers",
+        "title": "Valco Baby Recalls Snap Duo Trend Strollers Due to Fall Hazard",
+        "description": "This recall includes Valco Baby Snap Duo Trend strollers in charcoal, gray, night and denim colors. The recalled strollers have an order, model or batch number printed on the label permanently affixed to the strollers' frame. Strollers with order numbers 7884, 7885 or 7886 and model numbers N9938, N9939, N9872 or N0001 are included in the recall.",
+        "hazards": [
+          {
+            "name": "The stroller's front wheels can break off while in use, causing the strollers to fall unexpectedly, posing a fall hazard to children in the stroller.",
+            "hazard_type": null,
+            "hazard_type_id": null
+          }
+        ],
+        "url": "https://www.cpsc.gov/Recalls/2022/Valco-Baby-Recalls-Snap-Duo-Trend-Strollers-Due-to-Fall-Hazard"
+      },
+      "amazon_candidates": [
+        {
+          "review_label": "NON_MATCH",
+          "reviewer_notes": "Amazon listing is a different product, component, accessory, variant, or entity from the recalled 'Valco Baby Snap Duo Trend Strollers': 'Valco Baby Raincover for Snap Duo Trend, Neo Twin and Duo X Double Strollers'.",
+          "parent_asin": "B07PTTHB47",
+          "title": "Valco Baby Raincover for Snap Duo Trend, Neo Twin and Duo X Double Strollers",
+          "brand": "",
+          "manufacturer": "",
+          "model": "",
+          "upc": "",
+          "category": "Baby_Products",
+          "exact_upc": 0,
+          "shared_product_token_count": 6,
+          "product_token_jaccard": 0.6,
+          "product_name_sequence_similarity": 0.0,
+          "brand_relation": "brand_missing",
+          "evidence_score": 0.567,
+          "evidence": [
+            "6 shared product-name tokens"
+          ]
+        },
+        {
+          "review_label": "NON_MATCH",
+          "reviewer_notes": "Amazon listing is a different product, component, accessory, variant, or entity from the recalled 'Valco Baby Snap Duo Trend Strollers': 'Valco Baby Snap Duo Trend Car Seat Adapter (2019) (Universal)'.",
+          "parent_asin": "B07QH322B9",
+          "title": "Valco Baby Snap Duo Trend Car Seat Adapter (2019) (Universal)",
+          "brand": "",
+          "manufacturer": "",
+          "model": "",
+          "upc": "",
+          "category": "Baby",
+          "exact_upc": 0,
+          "shared_product_token_count": 5,
+          "product_token_jaccard": 0.454545,
+          "product_name_sequence_similarity": 0.0,
+          "brand_relation": "brand_missing",
+          "evidence_score": 0.462,
+          "evidence": [
+            "5 shared product-name tokens"
+          ]
+        }
+      ],
+      "incidents": [
+        {
+          "source_record_id": "20200830-45A15-2147370156",
+          "incident_date": "2020-08-16",
+          "publication_date": "2020-11-10",
+          "brand": "Valco Baby Snap duo",
+          "model": "Snap Duo Trend Charcoal",
+          "upc": "",
+          "product_description": "Valco baby snap duo trend in charcoal. Delivery 09/2019",
+          "description": "I purchased the snap duo Valco Baby double stroller on 02/06/20 in Wellesley, Massachusetts. While walking slowly on the sidewalk  the front wheel came off. The cap came off the pin that passes through the left front wheel. I only use the stroller in residential areas on sidewalks / paved roads so I was surprised when the wheel came off so easily. No one was injured as both kids were strapped in and I was walking slowly. I was also able to hold the stroller up and stop it from toppling so it just tilted forward. I do however see this fault as a pretty major safety issue if It toppled - which it could have, and children were to fall out of the stroller. \r\n[REDACTED]",
+          "manufacturer": "Unique Baby Products USA LLC dbs Valcobaby",
+          "retailer": "Magic beans"
+        },
+        {
+          "source_record_id": "20210825-D560D-2147360890",
+          "incident_date": "2021-08-24",
+          "publication_date": "2021-09-14",
+          "brand": "Valco Baby",
+          "model": "N9938",
+          "upc": "9315517099388",
+          "product_description": "Valco Snap Duo Trend, Grey Marle Color",
+          "description": "The front wheels came off my stroller while pushing my children up a hill.",
+          "manufacturer": "Unique Baby Products USA LLC dbs Valcobaby",
+          "retailer": "Albee Baby"
+        }
+      ]
+    }
+  ]
+}

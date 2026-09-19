@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SafeSKU Build It track. Local SAM template, not a cloud deployment template.
+
+Resources:
+  SafeSkuLocalApi:
+    Type: AWS::Serverless::Function
+    Metadata:
+      Dockerfile: Dockerfile.safesku-demo
+      DockerContext: ../..
+      DockerTag: safesku-build-it-local
+    Properties:
+      PackageType: Image
+      # Import/validation is synchronous; dataset ingestion is now handed to a
+      # local worker so the normal request should return well inside this ceiling.
+      Timeout: 180
+      MemorySize: 2048
+      Environment:
+        Variables:
+          SAFE_SKU_CLOUD_MODE: 'false'
+          SAFE_SKU_BUILD_IT: 'true'
+          SAFE_SKU_AGENT_MODE: 'local'
+          SAFE_SKU_SEARCH_MODE: 'opensearch'
+          SAFE_SKU_ROLE: 'reviewer'
+          SAFE_SKU_OPENSEARCH_URL: 'http://host.docker.internal:9200'
+          SAFE_SKU_OLLAMA_HOST: 'http://host.docker.internal:11434'
+          SAFE_SKU_LOCAL_MODEL: 'llama3.1'
+      Events:
+        ProxyApi:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+        RootApi:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: ANY

@@ -1,134 +1,568 @@
 # SafeSKU
-
 ## Evidence-grounded product safety intelligence for online marketplaces
 
-SafeSKU turns public product-safety artifacts into an investigation system.
-It combines official CPSC recalls, SaferProducts.gov consumer incident reports,
-Amazon marketplace metadata, and SafeSKU identity-linkage evidence to help an
-investigator answer four questions:
+> **Turn a recall into an investigation.**  
+> **Evidence first. AI second.**
 
-1. What was officially recalled?
-2. Which marketplace products could be the affected item?
-3. Is there public safety evidence that predates the recall?
-4. What can be concluded safely, and what still requires human review?
+[![Build It](https://img.shields.io/badge/First%20Commit-Build%20It-ff9900?style=flat-square)](#aws-build-it)
+[![Local](https://img.shields.io/badge/runtime-local-1f2937?style=flat-square)](#quick-start)
+[![Python](https://img.shields.io/badge/Python-3.12%2B-3776ab?style=flat-square)](#quick-start)
+[![Tests](https://img.shields.io/badge/tests-104%20passed-2ea44f?style=flat-square)](#engineering-status)
 
-**Core principle: Evidence first. AI second.**
+SafeSKU is a local evidence and investigation system for marketplace product safety.
 
-SafeSKU does not ask an LLM to invent product identity, recall facts, or temporal
-relationships. Deterministic retrieval and evidence logic produce the facts first.
-A bounded agent explains those facts, while Cedar policy controls which actions an
-agent or human reviewer may take.
+A recall tells a safety team **what was officially recalled**. It does not, by itself, answer the operational questions that come next:
 
-## Build It architecture
+- **Which marketplace listings could be the same product?**
+- **Is there independent public safety evidence connected to that product?**
+- **Did that evidence exist before the recall?**
+- **What exactly supports the conclusion?**
+- **Who is allowed to make the final identity decision?**
 
-```mermaid
-flowchart LR
-    C[CPSC recalls] --> N[Normalize + QA]
-    S[SaferProducts.gov] --> N
-    A[Amazon Reviews 2023 metadata] --> N
-    L[SafeSKU linkage artifacts] --> N
-    N --> DB[(SQLite canonical workspace)]
-    DB --> OS[(OpenSearch evidence index)]
-    DB --> E[Deterministic evidence engine]
-    OS --> E
-    E --> AG[Strands agent + local Ollama]
-    AG --> P[Cedar policy gate]
-    P --> H[Human reviewer]
-    H --> SC[Auditable Safety Case]
+SafeSKU brings those steps into one reproducible workflow using official recall data, public consumer incident records, marketplace metadata, deterministic evidence processing, agent-assisted investigation, policy enforcement, and human review.
+
+---
+
+## Why SafeSKU exists
+
+Marketplace safety investigation is a cross-source problem.
+
+Product names vary. Brands and manufacturers are inconsistent. Identifiers may be missing. Public incident reports and recalls have different timestamps. A model can explain evidence, but an explanation is not evidence.
+
+SafeSKU is designed around that distinction:
+
+> **The system can investigate uncertainty. It cannot turn uncertainty into authority.**
+
+The workflow separates:
+
+**Source evidence** → **identity candidates** → **temporal qualification** → **investigator explanation** → **human decision** → **auditable safety case**
+
+That makes SafeSKU useful not as a chatbot, but as an **investigation layer for marketplace trust and safety teams**.
+
+---
+
+# What SafeSKU does
+
+### 1. Ingest
+Bring together heterogeneous safety and marketplace sources:
+
+- **CPSC recalls** — official product recall records
+- **SaferProducts.gov incidents** — public consumer incident reports
+- **Amazon Reviews 2023 metadata** — marketplace product attributes
+- **SafeSKU linkage artifacts** — precomputed candidate relationships
+
+### 2. Build an evidence workspace
+Normalize, validate, de-duplicate, and register records into a canonical local workspace.
+
+### 3. Resolve product identity
+Generate and rank marketplace candidates using structured identity evidence such as:
+
+- UPC agreement
+- product-name overlap
+- token rarity
+- brand / model / manufacturer signals
+- lexical similarity
+- candidate-level feature combinations
+
+A linkage score is used for **ranking**, not treated as a calibrated probability of identity.
+
+### 4. Reason over time
+A public incident is considered **pre-recall** only when both timestamps satisfy:
+
+```text
+incident_date < recall_date
+AND
+publication_date < recall_date
 ```
 
-## Build It local stack
+This prevents a later-published report from being presented as evidence of an earlier warning.
 
-- AWS SAM CLI for local API Gateway and Lambda emulation
-- SQLite for the canonical local workspace
-- OpenSearch for evidence retrieval
-- Strands Agents SDK for tool-using investigation
-- Ollama for local inference
-- Cedar for authorization and separation of duties
-- FastAPI + Python backend
-- Browser UI with a focused investigator/review workflow
+### 5. Explain the investigation
+The Strands investigator retrieves the relevant evidence, summarizes it, cites evidence IDs, and prepares structured findings.
 
-AWS SAM supports running Lambda and API Gateway locally through Docker, which is
-why the application can be demonstrated without deploying to AWS. citeturn881224search1
+### 6. Govern the decision
+The agent can investigate.
 
-## Validated workspace
+The reviewer decides.
 
-The current judge bundle produces:
+Cedar protects the boundary between those two roles.
 
-| Artifact | Count |
+### 7. Produce a safety case
+The final investigation can be reviewed, persisted, audited, and exported as structured JSON or CSV.
+
+---
+
+# The 3-minute product story
+
+SafeSKU is easiest to understand through a single workflow:
+
+```text
+Select a recall
+      ↓
+Find marketplace candidates
+      ↓
+Retrieve public safety evidence
+      ↓
+Apply strict temporal rules
+      ↓
+Explain the evidence
+      ↓
+Human reviews the candidate
+      ↓
+Persist the decision
+      ↓
+Export a Safety Case
+```
+
+This is the product: **one recall in, one traceable investigation out.**
+
+---
+
+# See the system
+
+## Architecture
+
+![SafeSKU architecture](docs/images/architecture.png)
+
+### The design in one sentence
+
+**Real safety data enters a local evidence plane; deterministic systems establish what can be supported; AI explains the evidence; Cedar and human review control protected decisions.**
+
+The architecture deliberately separates:
+
+- **Canonical state** — SQLite
+- **Evidence retrieval** — OpenSearch
+- **Deterministic analysis** — identity + temporal engine
+- **Agent orchestration** — Strands
+- **Local model runtime** — Ollama
+- **Authorization** — Cedar
+- **Protected decision** — Human reviewer
+
+> **AI explains evidence. Policy and humans control protected actions.**
+
+---
+
+# Evidence model
+
+![SafeSKU evidence graph](docs/images/evidence-graph.jpg)
+
+Every investigation is assembled from structured records instead of free-form model memory.
+
+Typical evidence objects include:
+
+```text
+E-CPSC-<recall>
+E-SP-<incident>
+E-AMZ-<candidate>
+```
+
+The evidence graph connects:
+
+- official recalls
+- marketplace products
+- linkage candidates
+- timeline events
+- public incidents
+- human review decisions
+- Cedar authorization outcomes
+- the resulting Safety Case
+
+Every displayed finding is intended to remain traceable to one or more evidence IDs.
+
+---
+
+# How one investigation runs
+
+![SafeSKU investigation sequence](docs/images/investigation-sequence.jpg)
+
+A typical request follows this sequence:
+
+1. Browser sends a recall investigation request.
+2. SAM Local routes the request into the application.
+3. The evidence engine retrieves canonical records.
+4. OpenSearch retrieves relevant indexed evidence.
+5. Marketplace candidates are ranked.
+6. SaferProducts records are retrieved.
+7. Deterministic temporal rules qualify historical evidence.
+8. The Strands investigator explains the evidence package.
+9. Cedar evaluates protected actions.
+10. The reviewer confirms, rejects, or defers a candidate.
+11. The decision and audit trail are persisted into the Safety Case.
+
+The important detail is the ordering:
+
+> **Evidence retrieval and deterministic analysis happen before the model explanation.**
+
+---
+
+# Trust boundary
+
+![SafeSKU trust boundary](docs/images/trust-boundary.jpg)
+
+SafeSKU explicitly separates **reasoning authority** from **decision authority**.
+
+### Agent
+
+**ALLOW**
+- Read evidence
+- Investigate
+- Rank candidates
+- Prepare findings
+
+**DENY**
+- Confirm marketplace identity
+
+### Human reviewer
+
+**ALLOW**
+- Review evidence
+- Confirm identity
+- Reject identity
+- Defer for further investigation
+
+This is enforced as a policy boundary rather than being left to model behavior.
+
+> **AI can reason over evidence. AI cannot grant itself authority.**
+
+---
+
+# AWS Build It
+
+SafeSKU is designed for the **First Commit Build It** workflow, using AWS open-source technologies in a local setup.
+
+| Technology | What SafeSKU uses it for |
+|---|---|
+| **AWS SAM Local** | Local API Gateway / Lambda emulation |
+| **Amazon OpenSearch** | Evidence indexing and retrieval |
+| **Strands** | Investigation agent orchestration |
+| **Cedar** | Authorization and protected-action policy |
+| **Ollama** | Local model runtime |
+| **SQLite** | Canonical transactional workspace |
+
+The application is intentionally runnable locally for the Build It workflow. No cloud deployment is required for the demo path.
+
+### Why these technologies are separated
+
+**SQLite is the source of truth.**  
+**OpenSearch is the search layer.**  
+**Deterministic code establishes the evidence state.**  
+**The agent explains that state.**  
+**Cedar protects the decision boundary.**
+
+This keeps the architecture reproducible and makes the role of each AWS/open-source component visible.
+
+---
+
+# Data workspace
+
+The current competition judge bundle contains:
+
+| Dataset | Records |
 |---|---:|
-| CPSC recalls | 1,005 |
-| SaferProducts incidents | 13,696 |
-| Amazon marketplace products | 53,632 |
-| Supplied linkage candidates | 84,037 |
-| OpenSearch identity-candidate docs | 85,537 |
-| OpenSearch documents total | 153,870 |
+| CPSC recalls | **1,005** |
+| SaferProducts incidents | **13,696** |
+| Marketplace products | **53,632** |
+| Supplied linkage candidates | **84,037** |
+| OpenSearch evidence documents | **153,870** |
 
-The extra 1,500 identity-candidate documents are fallback candidates generated by
-the local investigation preparation path for recall cases without supplied
-linkage rows. This is intentional and should be described in demos as generated
-fallback candidates, not as additional source records.
+Large source datasets are intentionally kept outside Git. The repository contains application code, reproducibility tooling, selected evaluation artifacts, and a compact demo workspace.
 
-## Quick start
+---
 
-Prerequisites: Docker, AWS SAM CLI, Python 3.12+ in the project environment,
-Ollama, the local model, and Cedar CLI.
+# A real investigation example
 
-Start infrastructure:
+The demo uses **CPSC #20163**, a recall concerning banned lawn dart sets.
 
-```powershell
-docker compose -f infra\build-it\docker-compose.yml up -d
-```
+SafeSKU does not simply take the highest-ranked marketplace result and declare it affected.
 
-Start SafeSKU locally:
+Instead, the investigation surface shows:
 
-```powershell
-sam build --no-cached --template-file infra\build-it\template.yaml
-sam local start-api --template .aws-sam\build\template.yaml --warm-containers eager --no-watch
-```
+- the official recall
+- ranked marketplace candidates
+- linked public incidents
+- strict pre-recall qualification
+- an evidence timeline
+- the agent trace
+- the investigation posture
+- the reviewer queue
+- exportable findings
 
-Open `http://127.0.0.1:3000`.
+For this case, the workspace may surface a candidate with a **1.000 linkage score** while the product description is clearly inconsistent with the recalled item.
 
-The recommended demo bundle is:
+That is a feature of the safety design, not a failure of the workflow:
 
-```text
-data\bundles\safesku-judge-bundle.zip
-```
+> **A ranking signal is not automatically a confirmation.**
 
-See `docs/USER_MANUAL.md` for the complete runbook.
+The reviewer can leave the candidate unreviewed, reject it, or defer it instead of allowing an unsupported identity claim to become a safety decision.
 
-## Golden demo case
+---
 
-Use **CPSC #22754**, the Mohnark Pharmaceuticals Lidocaine 4% topical anesthetic
-cream recall, as the primary recorded demo case.
+# Deterministic temporal reasoning
 
-The intended demo is:
+SafeSKU separates **event time** from **model time**.
+
+For an incident to qualify as pre-recall evidence:
 
 ```text
-Search recall
-  -> official recall evidence
-  -> marketplace identity candidates
-  -> public safety reports
-  -> temporal evidence
-  -> agent trace
-  -> Cedar policy decision
-  -> human review
-  -> Safety Case export
+incident_date < recall_date
+AND
+publication_date < recall_date
 ```
 
-## Research framing
+Why both?
 
-The research contribution is not simply "classify unsafe products". SafeSKU studies
-cross-source product identity resolution and temporal evidence fusion across
-official recalls, public consumer reports, and marketplace metadata, with an
-explicit provenance graph and leakage-safe historical evaluation.
+Because an incident may describe an event that happened earlier but only became publicly available after the recall.
 
-See `docs/RESULTS.md` and `docs/RESEARCH_EVALUATION.md`.
+SafeSKU therefore refuses to call that incident an earlier public warning.
 
-## Repository hygiene
+This makes lead-time calculations reproducible and reduces temporal leakage during historical evaluation.
 
-Large raw datasets, local runtime databases, virtual environments, SAM build
-artifacts, benchmark outputs, and generated bundle files are intentionally excluded
-from Git. The repository contains the code, reproducibility instructions, compact
-demo artifacts, evaluation summaries, and documentation needed to understand and
-run the project.
+---
+
+# Human review workflow
+
+Candidate states:
+
+```text
+UNREVIEWED
+NEEDS_REVIEW
+CONFIRMED
+REJECTED
+```
+
+The workflow is intentionally conservative:
+
+```text
+Candidate found
+      ↓
+Evidence reviewed
+      ↓
+Human decision
+      ↓
+Decision persisted
+      ↓
+Audit trail
+```
+
+The agent does not receive the authority to convert a ranked candidate into a confirmed marketplace identity.
+
+---
+
+# Research foundation
+
+The product is also an evaluation environment for a deeper research question:
+
+> **Can cross-source temporal reasoning over consumer incidents, official recalls, and marketplace identity evidence identify emerging product-safety signals earlier, while reducing false positives compared with single-source approaches?**
+
+SafeSKU is structured to support comparisons across:
+
+- keyword / rule baselines
+- BM25 / TF-IDF retrieval
+- embedding retrieval
+- supervised classifiers
+- LLM-only reasoning
+- full SafeSKU evidence fusion
+
+### Evaluation dimensions
+
+**Identity**
+- Precision
+- Recall
+- F1
+- False-match rate
+
+**Safety signal detection**
+- Precision
+- Recall
+- F1
+- AUROC
+- AUPRC
+
+**Temporal usefulness**
+- Safety lead time
+- Chronological historical replay
+
+**Evidence quality**
+- Evidence completeness
+- Unsupported claim rate
+
+**System behavior**
+- Latency
+- Retrieval performance
+
+Chronological splits should be used for temporal evaluation to avoid future information leaking into historical analysis.
+
+---
+
+# Engineering principles
+
+### Evidence before AI
+The model receives curated evidence rather than becoming the source of truth.
+
+### Candidate is not confirmed identity
+Ranking and authorization are separate concerns.
+
+### Time is part of the evidence
+Historical claims use source timestamps, not model inference.
+
+### The agent investigates; the reviewer decides
+Protected identity actions are outside the agent's authority.
+
+### Policy protects sensitive actions
+Cedar encodes the decision boundary explicitly.
+
+### SQLite is canonical; OpenSearch is retrieval
+Search acceleration never replaces canonical state.
+
+### Large data stays outside Git
+The repository stays portable while the full judge bundle remains reproducible locally.
+
+### Demo mode is deterministic
+The competition demo can be replayed against the same workspace and evidence bundle.
+
+---
+
+# Quick start
+
+## Prerequisites
+
+- Python 3.12+
+- Docker
+- AWS SAM CLI
+- OpenSearch
+- Ollama
+- Cedar CLI
+
+## Validate
+
+```powershell
+sam validate --template-file infra/build-it/template.yaml --region ap-south-1
+```
+
+## Build
+
+```powershell
+sam build --no-cached --template-file infra/build-it/template.yaml
+```
+
+## Start locally
+
+```powershell
+sam local start-api `
+  --template .aws-sam/build/template.yaml `
+  --warm-containers eager `
+  --no-watch
+```
+
+For the complete competition setup, data preparation, OpenSearch indexing, bundle loading, and recording flow, see:
+
+```text
+docs/DEMO_RUNBOOK.md
+```
+
+---
+
+# Repository structure
+
+```text
+SafeSKU/
+├── apps/
+│   └── api/
+│       ├── app/                 # application and domain logic
+│       └── tests/               # automated tests
+│
+├── infra/
+│   └── build-it/                # AWS SAM local infrastructure
+│
+├── policies/                    # Cedar authorization policies
+├── scripts/                     # ingestion, indexing, evaluation, tooling
+│
+├── docs/
+│   ├── images/                  # architecture and evidence diagrams
+│   ├── DEMO_RUNBOOK.md
+│   ├── DATA_SOURCES.md
+│   └── DATA_LICENSES.md
+│
+├── data/
+│   ├── demo/                    # compact demo artifacts
+│   └── benchmark/               # selected evaluation artifacts
+│
+└── README.md
+```
+
+---
+
+# Data sources and attribution
+
+SafeSKU uses:
+
+- **U.S. Consumer Product Safety Commission (CPSC)** recall data
+- **SaferProducts.gov** public incident data
+- **Amazon Reviews 2023** metadata distributed by the McAuley Lab / UCSD research dataset
+
+Before redistributing or extending source datasets, review:
+
+```text
+docs/DATA_SOURCES.md
+docs/DATA_LICENSES.md
+```
+
+The repository does not attempt to redistribute the full underlying source datasets.
+
+---
+
+# Engineering status
+
+The local Build It implementation has been exercised against the SafeSKU judge bundle and a **153,870-document OpenSearch evidence index**.
+
+Automated test suite:
+
+```text
+104 passed
+2 warnings
+```
+
+The system has been built to be deliberately conservative about product identity and causal claims.
+
+> **SafeSKU is an investigation aid. It is not a replacement for formal product-safety review.**
+
+---
+
+# What makes SafeSKU different
+
+Most safety workflows stop at:
+
+```text
+Recall found → Search products → Show a result
+```
+
+SafeSKU goes further:
+
+```text
+Recall
+  ↓
+Identity resolution
+  ↓
+Independent incident evidence
+  ↓
+Strict historical qualification
+  ↓
+Evidence-backed explanation
+  ↓
+Policy enforcement
+  ↓
+Human review
+  ↓
+Auditable Safety Case
+```
+
+The goal is not to make the AI sound certain.
+
+The goal is to make the investigation **traceable, reproducible, and safe to act on**.
+
+---
+
+## SafeSKU
+
+### **Find the product. Check the evidence. Keep the decision accountable.**
+

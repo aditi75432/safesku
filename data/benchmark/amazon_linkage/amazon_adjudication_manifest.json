@@ -1,0 +1,13 @@
+{
+  "input_candidate_rows": 84037,
+  "selected_rows": 200,
+  "label_distribution": {
+    "NON_MATCH": 151,
+    "MATCH": 31,
+    "UNCERTAIN": 18
+  },
+  "exact_upc_rows": 4,
+  "unique_recalls": 140,
+  "annotation_type": "senior evidence working adjudication",
+  "research_integrity": "Development labels, not independently annotated gold-standard ground truth."
+}

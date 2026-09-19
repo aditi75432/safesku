@@ -122,7 +122,8 @@ This is the product: **one recall in, one traceable investigation out.**
 
 ## Architecture
 
-![SafeSKU architecture](docs/images/architecture.png)
+<img width="1942" height="809" alt="Architecture" src="https://github.com/user-attachments/assets/8c59ff41-f3ff-4cc6-ac13-4c133be1aba7" />
+
 
 ### The design in one sentence
 
@@ -144,7 +145,8 @@ The architecture deliberately separates:
 
 # Evidence model
 
-![SafeSKU evidence graph](docs/images/evidence-graph.jpg)
+<img width="1024" height="572" alt="evidence" src="https://github.com/user-attachments/assets/4eb976fd-5ff7-4f40-9733-5bc2ef49e149" />
+
 
 Every investigation is assembled from structured records instead of free-form model memory.
 
@@ -173,7 +175,9 @@ Every displayed finding is intended to remain traceable to one or more evidence 
 
 # How one investigation runs
 
-![SafeSKU investigation sequence](docs/images/investigation-sequence.jpg)
+
+<img width="1024" height="572" alt="investigation" src="https://github.com/user-attachments/assets/51507905-0d2e-4cc3-b753-8cfce04c672b" />
+
 
 A typical request follows this sequence:
 
@@ -197,7 +201,8 @@ The important detail is the ordering:
 
 # Trust boundary
 
-![SafeSKU trust boundary](docs/images/trust-boundary.jpg)
+<img width="1024" height="572" alt="trust" src="https://github.com/user-attachments/assets/f1bcd6d5-979b-4818-8131-633cdbcabda7" />
+
 
 SafeSKU explicitly separates **reasoning authority** from **decision authority**.
 

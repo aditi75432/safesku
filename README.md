@@ -21,6 +21,7 @@ A recall tells a safety team **what was officially recalled**. It does not, by i
 
 SafeSKU brings those steps into one reproducible workflow using official recall data, public consumer incident records, marketplace metadata, deterministic evidence processing, agent-assisted investigation, policy enforcement, and human review.
 
+(SKU - Stock Keeping Unit)
 ---
 
 ## Why SafeSKU exists
@@ -46,7 +47,7 @@ That makes SafeSKU useful not as a chatbot, but as an **investigation layer for 
 ### 1. Ingest
 Bring together heterogeneous safety and marketplace sources:
 
-- **CPSC recalls** — official product recall records
+- **CPSC (U.S. Consumer Product Safety Commission) recalls** — official product recall records
 - **SaferProducts.gov incidents** — public consumer incident reports
 - **Amazon Reviews 2023 metadata** — marketplace product attributes
 - **SafeSKU linkage artifacts** — precomputed candidate relationships
@@ -57,7 +58,7 @@ Normalize, validate, de-duplicate, and register records into a canonical local w
 ### 3. Resolve product identity
 Generate and rank marketplace candidates using structured identity evidence such as:
 
-- UPC agreement
+- UPC(Universal Product Code) agreement
 - product-name overlap
 - token rarity
 - brand / model / manufacturer signals

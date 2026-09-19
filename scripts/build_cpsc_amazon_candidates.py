@@ -3,9 +3,9 @@ from __future__ import annotations
 import argparse
 import json
 import pickle
-from collections import Counter
 from pathlib import Path
 from typing import Any
+from collections import Counter
 
 from app.services.linkage.amazon_features import exact_upc, jaccard, tokenize
 
@@ -53,18 +53,6 @@ def collect_cpsc_upcs(recall: dict[str, Any], product: dict[str, Any]) -> list[s
 
 
 def generate_candidates(product: dict[str, Any], recall: dict[str, Any], index: dict[str, Any]):
-    """Return candidates using the intended rarity-aware blocker.
-
-    Discovery:
-      At least one CPSC product-name token must be rare (Amazon DF <= 250).
-
-    Validation:
-      The Amazon title must share at least two total CPSC product-name tokens.
-
-    This is important: the second shared token may be common. The index only
-    needs rare-token postings to discover a bounded candidate set; full title
-    tokens decide whether the pair satisfies the two-token overlap rule.
-    """
     name_tokens = set(tokenize(product.get("name") or ""))
 
     exact_parents = set()
@@ -73,6 +61,8 @@ def generate_candidates(product: dict[str, Any], recall: dict[str, Any], index: 
         if normalized:
             exact_parents.update(index["exact_upc_index"].get(normalized, []))
 
+    # Discovery uses category-local rare-token postings. Full Amazon titles are
+    # checked afterward so the second shared token may be common.
     rare_seed_parents: set[str] = set()
     for token in name_tokens:
         rare_seed_parents.update(index["rare_postings"].get(token, []))
@@ -82,45 +72,38 @@ def generate_candidates(product: dict[str, Any], recall: dict[str, Any], index: 
         amazon = index["amazon_products"].get(parent)
         if not amazon:
             continue
-
         amazon_tokens = set(tokenize(amazon.get("title") or ""))
-        shared_count = len(name_tokens & amazon_tokens)
-
-        if shared_count >= index["blocker"]["min_shared_tokens"]:
+        if len(name_tokens & amazon_tokens) >= index["blocker"]["min_shared_tokens"]:
             lexical_parents.add(parent)
 
     return exact_parents, lexical_parents, name_tokens
 
+
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Generate CPSC -> Amazon candidates from bounded index.")
+    parser = argparse.ArgumentParser(description="Generate CPSC -> Amazon candidates from a category-aware index.")
     parser.add_argument("--cpsc-input", type=Path, default=Path("data/benchmark/cpsc/recalls.jsonl"))
     parser.add_argument("--index", type=Path, default=Path("data/benchmark/amazon_linkage/amazon_cpsc_index.pkl"))
     parser.add_argument("--output", type=Path, default=Path("data/benchmark/amazon_linkage/candidates.jsonl"))
     args = parser.parse_args()
 
-    if not args.index.exists():
-        raise FileNotFoundError(
-            f"Amazon index not found: {args.index}. Run build_amazon_cpsc_index.py first."
-        )
-
     with args.index.open("rb") as handle:
         index = pickle.load(handle)
+    if index.get("version") != 2:
+        raise ValueError("Incompatible Amazon index. Rebuild with build_amazon_cpsc_index.py.")
 
     products = index["amazon_products"]
     args.output.parent.mkdir(parents=True, exist_ok=True)
-
     manifest = {
-        "policy": "exact_upc OR two_shared_product_name_tokens_with_one_rare_token",
-        "max_token_document_frequency": index["blocker"]["max_token_document_frequency"],
-        "min_shared_tokens": index["blocker"]["min_shared_tokens"],
+        "index_version": index["version"],
+        "policy": index["blocker"],
         "cpsc_records": 0,
         "cpsc_product_mentions": 0,
+        "amazon_parent_asins_indexed": len(products),
         "product_mentions_with_candidates": 0,
         "candidate_pairs": 0,
         "exact_upc_candidates": 0,
         "lexical_candidates": 0,
         "candidate_pairs_written": 0,
-        "amazon_parent_asins_indexed": len(products),
     }
 
     with args.output.open("w", encoding="utf-8") as out:
@@ -128,13 +111,10 @@ def main() -> None:
             manifest["cpsc_records"] += 1
             for product_index, product in enumerate(product_mentions(recall)):
                 manifest["cpsc_product_mentions"] += 1
-
                 exact_parents, lexical_parents, name_tokens = generate_candidates(product, recall, index)
                 parents = exact_parents | lexical_parents
-
                 if parents:
                     manifest["product_mentions_with_candidates"] += 1
-
                 manifest["candidate_pairs"] += len(parents)
                 manifest["exact_upc_candidates"] += len(exact_parents)
                 manifest["lexical_candidates"] += len(lexical_parents)
@@ -145,7 +125,6 @@ def main() -> None:
                     if not amazon:
                         continue
                     amazon_tokens = set(tokenize(amazon.get("title") or ""))
-
                     rows.append({
                         "cpsc_source_record_id": recall.get("source_record_id"),
                         "cpsc_recall_number": recall.get("recall_number"),
@@ -159,22 +138,13 @@ def main() -> None:
                         "amazon_model": amazon.get("model") or "",
                         "amazon_upc": amazon.get("upc") or "",
                         "amazon_category": amazon.get("main_category") or amazon.get("source_category") or "",
-                        "blocking_sources": (
-                            (["exact_upc"] if parent in exact_parents else [])
-                            + (["two_tokens_plus_rare_token"] if parent in lexical_parents else [])
-                        ),
+                        "blocking_sources": ((["exact_upc"] if parent in exact_parents else []) + (["two_tokens_plus_category_rare_token"] if parent in lexical_parents else [])),
                         "exact_upc": exact_upc(collect_cpsc_upcs(recall, product), amazon.get("upc")),
                         "shared_product_token_count": len(name_tokens & amazon_tokens),
                         "product_token_jaccard": jaccard(name_tokens, amazon_tokens),
                     })
 
-                rows.sort(key=lambda row: (
-                    -row["exact_upc"],
-                    -row["shared_product_token_count"],
-                    -row["product_token_jaccard"],
-                    row["amazon_parent_asin"],
-                ))
-
+                rows.sort(key=lambda row: (-row["exact_upc"], -row["shared_product_token_count"], -row["product_token_jaccard"], row["amazon_parent_asin"]))
                 for row in rows:
                     out.write(json.dumps(row, ensure_ascii=False) + "\n")
                     manifest["candidate_pairs_written"] += 1

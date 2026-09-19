@@ -56,7 +56,7 @@ data/benchmark/amazon_linkage/*.jsonl
 data/benchmark/amazon_linkage/*.pkl
 data/benchmark/amazon_linkage/modeling/
 
-docs/
+
 # Local build/runtime state
 .aws-sam/
 data/runtime/

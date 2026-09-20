@@ -568,6 +568,13 @@ The goal is to make the investigation **traceable, reproducible, and safe to act
 
 ---
 
+## AI assistance
+
+AI tools were used during development for ideation, debugging assistance,
+documentation refinement, and visual asset generation. The application
+logic, evaluation pipeline, data processing, infrastructure configuration,
+and final integration were reviewed and assembled by the project author.
+
 ## SafeSKU
 
 ### **Find the product. Check the evidence. Keep the decision accountable.**
